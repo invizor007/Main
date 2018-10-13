@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Мачи коро</title>
+</head>
+
+<script src="https://js.cx/babel-core/browser.min.js"></script>
+<script type="text/javascript" src="1.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="1.css">
+
+<body>
+	
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+
+  <label for="label1" class="GameLabelLong" id="label1">Введите количество игроков от 2 до 5</label>
+  <input type="text" class="text" value="3" id="ChoosePlayerCount">
+  <button class = "btn btn-default GameBtn" id="StartGame" onclick="GameStart()">Начать игру</button>
+  <button class = "btn btn-default GameBtn" id="FinishGame" onclick="GameEnd()">Завершить игру</button>
+
+
+  <br>
+  <label for="label2" class="GameLabel" id="label2">Ходит игрок номер</label>
+  <label for="label3" class="GameLabel" id="label3">Количество денег=</label>
+  <label for="label4" class="GameLabel" id="label4">Выпало число</label>
+
+  <br>
+
+  <div class="GamePanel1" id = "Panel1" onclick = "neiclick(event)">
+    <canvas id="Canvas1" width="455" height="200">
+      
+    </canvas>
+  </div>
+
+  <br>
+
+  <div class="GamePanel2" id = "Panel2">
+    <canvas id="Canvas2" width="455" height="200">
+      
+    </canvas>
+  </div>  
+
+  <div class="GamePanel3" id = "Panel3">
+    <input type="radio" id="CubeChoice1" name="CubeCount" value="Один кубик" onchange="CubeCountChoice()" checked>
+    <label for="CubeChoice1">Один кубик</label><br>
+
+    <input type="radio" id="CubeChoice2" name="CubeCount" value="Два кубика" onchange="CubeCountChoice()" disabled>
+    <label for="CubeChoice2">Два кубика</label><br>
+
+    <button class = "btn btn-default GameActiveBtn" id="Step0" onclick="Step0Click()">Бросить кубики</button><br>
+    <button class = "btn btn-default GameBtn" id="Step1" onclick="Step1Click()">Получить деньги</button><br>
+    <button class = "btn btn-default GameBtn" id="Step2" onclick="Step2Click()">Купить карту</button><br>
+    <button class = "btn btn-default GameBtn" id="Step3" onclick="Step3Click()">Завершить ход</button><br>  
+  
+  </div>
+
+<div class="GamePanel4" id = "Panel4">
+  <canvas id="Canvas4" width = "40" height = "200">
+    
+  </canvas>
+</div>
+
+<div class="GamePanel5" id = "Panel5" onclick = "specclick(event)">
+  <canvas id="Canvas5" width = "130" height = "200">
+    
+  </canvas>
+</div>
+
+</nav>
+
+</body>
+</html>
