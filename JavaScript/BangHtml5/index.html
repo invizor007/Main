@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+
+<script src="https://js.cx/babel-core/browser.min.js"></script>
+<script type="text/javascript" src="3.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="3.css">
+
+<body onLoad="ImageInit()">
+	
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="GamePanel1" id = "Panel1">
+      <label for="LabelPlayerCount" class="GameLabelLong" id="LabelPlayerCount">Введите количество игроков от 2 до 8</label>
+      <input type="text" class="text" value="4" id="ChoosePlayerCount">
+      <button class = "btn btn-default GameBtnT1" id="StartGame" onclick="GameStart()">Начать игру</button>
+      <button class = "btn btn-default GameBtnT2" id="FinishGame" onclick="GameEnd()">Завершить игру</button>
+    </div>
+
+    <div class="GamePanel2" id = "Panel2" >
+      <label for = "LabelCurrPlayer" class = "GameLabelLong" id="LabelCurrPlayer">Игрок номер</label><br>
+      <label for = "LabelPlayerName" class = "GameLabelLong" id="LabelPlayerName">Имя</label><br>
+      <label for = "LabelHP" class = "GameLabelLong" id="LabelHP">Количество жизней</label><br>
+      <label for = "LabelArrows" class = "GameLabelLong" id="LabelArrows">Количество стрел</label>
+      <button class = "btn btn-default GameBtnT3" id="ShowRole" onclick="ShowRoleClick()">Показать роль</button><br>
+      <button class = "btn btn-default GameBtnT3" id="ShowPerson" onclick="ShowPersonClick()">Показать способность</button><br>
+      <button class = "btn btn-default GameBtnT3" id="UseAbility" onclick="UseAbility()">Применить способность</button><br>
+    </div>
+
+    <div class="GamePanel3" id = "Panel3">
+      <canvas id="CanvasPlayerArray" width = "270" height = "275" onclick=LaMatrixClick(event)>
+    
+      </canvas>
+    </div>
+
+    <div class="GamePanel4" id = "Panel4">
+      <canvas id="CanvasCubes" width = "500" height = "160" onclick=CanvasCubesClick(event)>
+    
+      </canvas>      
+    </div>
+
+    <div class="GamePanel5" id = "Panel5">
+      <button class = "btn btn-default GameBtnT2" id="Step0" onclick="Step0Click()">Бросить кубики</button>
+      <button class = "btn btn-default GameBtnT2" id="Step1" onclick="Step1Click()">Применить кубики</button>
+      <button class = "btn btn-default GameBtnT2" id="Step2" onclick="Step2Click()">Переход хода</button>
+    </div>
+
+    <div class="GamePanel6" id = "Panel6">
+      <label for = "BankArrowCount" class = "GameLabelLong" id="BankArrowCount">Стрел в банке</label><br>
+      <input type="checkbox" id="ChB1" name="ChB1" onclick="ChB1Click()" disabled><label for="ChB1">Сбрасывать стрелу при получении урона</label><br>
+      <input type="checkbox" id="ChB2" name="ChB2" onclick="ChB2Click()" disabled><label for="ChB2">Брать стрелы вместо получения урона</label><br>
+    </div>
+
+  </div>
+
+</nav>
+
+</body>
+</html>

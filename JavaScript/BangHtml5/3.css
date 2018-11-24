@@ -1,0 +1,102 @@
+
+.GameBtnT1{
+    width: 130px;
+    height:30px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.GameBtnT2{
+    width: 160px;
+    height:30px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.GameBtnT3{
+    width: 180px;
+    height:30px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.GameActiveBtn{
+    width: 130px;
+    height:30px;
+	color:#000000;
+	background-color:#80FF80;
+}
+
+.GameLabel{
+    width: 200px;
+    height:25px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+.GameLabelLong{
+    width: 300px;
+    height:25px;
+	color:#000000;
+	background-color:#80ff80;
+}
+
+.GamePanel1{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+    width: 800px;
+    height:35px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+.GamePanel2{
+	position: absolute;
+	left: 10px;
+	top: 60px;
+    width: 185px;
+    height:275px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+.GamePanel3{
+	position: absolute;
+	left: 210px;
+	top: 60px;
+    width: 270px;
+    height:275px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+.GamePanel4{
+	position: absolute;
+	left: 490px;
+	top: 60px;
+    width: 500px;
+    height:160px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+.GamePanel5{
+	position: absolute;
+	left: 490px;
+	top: 220px;
+    width: 500px;
+    height:30px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+.GamePanel6{
+	position: absolute;
+	left: 490px;
+	top: 255px;
+    width: 500px;
+    height:80px;
+	color:#000000;
+	background-color:#8080ff;
+}
