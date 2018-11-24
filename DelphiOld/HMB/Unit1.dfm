@@ -1,0 +1,138 @@
+object Form1: TForm1
+  Left = 192
+  Top = 107
+  Width = 817
+  Height = 616
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label2: TLabel
+    Left = 560
+    Top = 120
+    Width = 41
+    Height = 25
+    AutoSize = False
+  end
+  object Button1: TButton
+    Left = 376
+    Top = 16
+    Width = 75
+    Height = 25
+    Caption = 'new'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object ProgressBar1: TProgressBar
+    Left = 272
+    Top = 56
+    Width = 121
+    Height = 385
+    Min = 0
+    Max = 100
+    Orientation = pbVertical
+    Smooth = True
+    Step = 1
+    TabOrder = 1
+  end
+  object ProgressBar2: TProgressBar
+    Left = 432
+    Top = 56
+    Width = 121
+    Height = 385
+    Min = 0
+    Max = 100
+    Orientation = pbVertical
+    Smooth = True
+    Step = 1
+    TabOrder = 2
+  end
+  object ValueListEditor1: TValueListEditor
+    Left = 16
+    Top = 56
+    Width = 217
+    Height = 185
+    Strings.Strings = (
+      'count=100'
+      'umin=1'
+      'umax=1'
+      'h=5'
+      'hc=')
+    TabOrder = 3
+    ColWidths = (
+      99
+      112)
+  end
+  object ValueListEditor2: TValueListEditor
+    Left = 568
+    Top = 56
+    Width = 209
+    Height = 193
+    Strings.Strings = (
+      'count=80'
+      'umin=1'
+      'umax=1'
+      'h=5'
+      'hc=')
+    TabOrder = 4
+    ColWidths = (
+      99
+      104)
+  end
+  object Button2: TButton
+    Left = 368
+    Top = 496
+    Width = 97
+    Height = 33
+    Caption = 'Step'
+    Enabled = False
+    TabOrder = 5
+    OnClick = Button2Click
+  end
+  object Edit1: TEdit
+    Left = 48
+    Top = 16
+    Width = 121
+    Height = 21
+    TabOrder = 6
+    Text = '100'
+  end
+  object Edit2: TEdit
+    Left = 608
+    Top = 16
+    Width = 121
+    Height = 21
+    TabOrder = 7
+    Text = '80'
+  end
+  object CheckBox1: TCheckBox
+    Left = 216
+    Top = 504
+    Width = 97
+    Height = 17
+    Caption = 'Auto'
+    TabOrder = 8
+  end
+  object CheckBox2: TCheckBox
+    Left = 216
+    Top = 472
+    Width = 97
+    Height = 17
+    Caption = 'UseEdits'
+    Checked = True
+    State = cbChecked
+    TabOrder = 9
+  end
+  object Timer1: TTimer
+    Interval = 1
+    OnTimer = Timer1Timer
+    Left = 88
+    Top = 496
+  end
+end

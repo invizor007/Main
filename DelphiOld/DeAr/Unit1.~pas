@@ -1,0 +1,188 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Button1: TButton;
+    LabeledEdit1: TLabeledEdit;
+    LabeledEdit2: TLabeledEdit;
+    Timer1: TTimer;
+    LabeledEdit3: TLabeledEdit;
+    Button2: TButton;
+    Label5: TLabel;
+    Label6: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
+    procedure LabeledEdit1KeyPress(Sender: TObject; var Key: Char);
+    procedure LabeledEdit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Button1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure LabeledEdit3KeyPress(Sender: TObject; var Key: Char);
+    procedure Button2Click(Sender: TObject);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+var Bmp:TBitMap;
+k,x,y:real;
+t:integer;
+{$R *.dfm}
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+Bmp:=TBitMap.Create;
+Bmp.Width:=Screen.Width;
+Bmp.Height:=Screen.Height;
+with Bmp.Canvas do
+  begin
+  Brush.Color:=clBtnFace;
+  FillRect(Rect(0,0,1023,767));
+  Brush.Color:=clWhite;
+  FillRect(Rect(0,0,500,600));
+  FillRect(Rect(524,0,1023,600));
+  end;
+end;
+
+procedure TForm1.FormPaint(Sender: TObject);
+begin
+Canvas.Draw(0,0,Bmp);
+end;
+
+procedure TForm1.LabeledEdit1KeyPress(Sender: TObject; var Key: Char);
+begin
+if not (key in['0'..'9',#8,'.'])then Key:=#0;
+if(Key='.')and((pos('.',LabeledEdit1.Text)<>0)or(LabeledEdit1.Text=''))then key:=#0;
+end;
+
+procedure TForm1.LabeledEdit2KeyPress(Sender: TObject; var Key: Char);
+begin
+if not (key in['0'..'9',#8,'.'])then Key:=#0;
+if(Key='.')and((pos('.',LabeledEdit2.Text)<>0)or(LabeledEdit2.Text=''))then key:=#0;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var s:String;
+begin
+Timer1.Enabled:=true;
+
+if LabeledEdit1.Text='' then LabeledEdit1.Text:='600';
+if LabeledEdit2.Text='' then LabeledEdit2.Text:='500';
+if LabeledEdit3.Text='' then LabeledEdit3.Text:='0.01';
+
+s:=LabeledEdit1.Text;
+if(Pos('.',s)=Length(s))then
+  begin
+  Delete(s,Length(s)-1,1);
+  LabeledEdit1.Text:=s;
+  end;
+s:=LabeledEdit2.Text;
+if(Pos('.',s)=Length(s))then
+  begin
+  Delete(s,Length(s)-1,1);
+  LabeledEdit2.Text:=s;
+  end;
+s:=LabeledEdit3.Text;
+if(Pos('.',s)=Length(s))then
+  begin
+  Delete(s,Length(s)-1,1);
+  LabeledEdit3.Text:=s;
+  end;
+
+x:=StrToFloat(LabeledEdit1.Text);
+y:=StrToFloat(LabeledEdit2.Text);
+k:=StrToFloat(LabeledEdit3.Text);
+t:=0;
+with Bmp.Canvas do
+  begin
+  Brush.Color:=clWhite;
+  FillRect(Rect(0,0,500,600));
+  FillRect(Rect(524,0,1023,600));
+  end;
+Canvas.Draw(0,0,Bmp);
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+var dx,dy:real;
+begin
+t:=t+1;
+Label5.Caption:=IntToStr(t);
+Button1.Enabled:=false;
+dx:=k*(y);
+dy:=k*(x);
+//более точная аппроксимация производной
+dx:=k*(y-k*x/2);
+dy:=k*(x-k*y/2);
+
+x:=x-dx;
+y:=y-dy;
+if(x>0)and(y>0)then
+  begin
+  if t<500 then
+    begin
+    Bmp.Canvas.Pixels[t,600-Round(x)]:=clblack;
+    Bmp.Canvas.Pixels[524+t,600-Round(y)]:=clBlack;
+    Canvas.Draw(0,0,Bmp);
+    end;
+  Label1.Caption:=FloatToStr(x);
+  Label2.Caption:=FloatToStr(y);
+  Label6.Caption:=FloatToStr(sqrt(abs(x*x-y*y)));
+  end          else
+  begin
+  Timer1.Enabled:=false;
+  Button1.Enabled:=true;
+  end;
+
+end;
+
+procedure TForm1.LabeledEdit3KeyPress(Sender: TObject; var Key: Char);
+begin
+if not (key in['0'..'9',#8,'.'])then Key:=#0;
+if(Key='.')and((pos('.',LabeledEdit3.Text)<>0)or(LabeledEdit3.Text=''))then key:=#0;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+Timer1.Enabled:=false;
+Button1.Enabled:=true;
+end;
+
+procedure TForm1.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+if Timer1.Enabled=false then begin
+if(y<=600)and((x<=500)or(x>=524))then
+  begin
+  if X<=500 then
+    begin
+    Label4.Caption:=IntToStr(X)+' '+IntTostr(600-Y);
+    Label3.Caption:='1';
+    end     else
+    begin
+    label4.Caption:=IntToStr(X-524)+' '+IntToStr(600-Y);
+    label3.Caption:='2';
+    end;
+  end                           else
+  begin
+  Label3.Caption:='';
+  Label4.Caption:='';
+  end;
+end;end;
+
+end.
