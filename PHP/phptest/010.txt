@@ -1,0 +1,26 @@
+﻿010.php
+
+<html>
+<head>
+<title>—крипт</title>
+</head>
+<body>
+<form action="010a.php" method="POST">
+<input type="text" name="k0" width=30 value=1>
+x^2+
+<input type="text" name="k1" width=30 value=2>
+x+
+<input type="text" name="k2" width=30 value=1>
+<br><input type="submit" value="ok">
+</form>
+
+</body>
+</html>
+
+010a.php
+<?php
+$k=array($_POST["k0"],$_POST["k1"],$_POST["k2"]);
+$x1=(-$k[1]-sqrt($k[1]*$k[1]-4*$k[0]*$k[2]))/(2*$k[0]);
+$x2=(-$k[1]+sqrt($k[1]*$k[1]-4*$k[0]*$k[2]))/(2*$k[0]);
+echo $x1," ",$x2;
+?>

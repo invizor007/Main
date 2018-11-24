@@ -1,0 +1,25 @@
+﻿<?php
+if (file_exists('017.xml')) 
+	{
+	$xml = simplexml_load_file('017.xml');
+	var_dump($xml);
+	echo "<br>";
+	echo $xml->file[1];
+	}
+else
+	{
+	exit('Failed to open test.xml.');
+	
+}
+
+
+?>
+
+
+
++017.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<folder name="texts" size="4000">
+  <file size="3000">file1</file>
+  <file size="1000">file2</file>
+</folder>

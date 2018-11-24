@@ -1,0 +1,17 @@
+﻿009.php
+
+<html>
+ <head>
+ </head>
+ <body>
+<form action="009a.php" method="POST">
+ Ваше имя: <input type="text" name="name" />
+ Ваш возраст: <input type="text" name="age" />
+ <input type="submit">
+</form>
+ </body>
+</html>
+
+009a.php
+Здравствуйте, <?php echo $_POST["name"]; ?>.
+Вам <?php echo $_POST["age"]; ?> лет. 
