@@ -1,0 +1,91 @@
+.PanelRes{
+	position: absolute;
+    width: 690px;
+    height:40px;
+	top: 610px;
+	left: 210px;
+}
+
+.PanelInfo{
+	position: absolute;
+    width: 790px;
+    height:140px;
+	top: 530px;
+	left: 20px;
+}
+
+.PanelMap{
+	position: absolute;
+    width: 490px;
+    height:510px;
+	top: 10px;
+	left: 10px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.PanelZd{
+	position: absolute;
+    width: 300px;
+    height:340px;
+	top:10px;
+	left:510px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.PanelZdU{
+	position: absolute;
+    width: 300px;
+    height:70px;
+	top:340px;
+	left:510px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.PanelU{
+	position: absolute;
+    width: 300px;
+    height:100px;
+	top:410px;
+	left:510px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.PanelArmy{
+	position: absolute;
+    width: 300px;
+    height:470px;
+	top:10px;
+	left:820px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.PanelPe{
+	position: absolute;
+    width: 300px;
+    height:150px;
+	top:480px;
+	left:820px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+
+.Zd{
+    width: 60px;
+    height:60px;
+	color:#000000;
+	background-color:#0000ff;
+	vertical-align: middle;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+body{
+	background: url('../img/fon/4.jpg') 100% 100% no-repeat;
+	background-size: cover; 
+}

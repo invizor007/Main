@@ -1,0 +1,53 @@
+body{
+	background: url('../img/fon/5.jpg') 100% 100% no-repeat;
+	background-size: cover; 
+}
+
+
+.PanelRes{
+	position: absolute;
+    width: 500px;
+    height:140px;
+	top:50px;
+	left:300px;
+}
+
+.PanelChoice1{
+	position: absolute;
+    width: 250px;
+    height:70px;
+	top:55%;
+	left:5%;
+}
+
+.PanelChoice2{
+	position: absolute;
+    width: 250px;
+    height:70px;
+	top:65%;
+	left:75%;
+}
+
+.PanelChoice3{
+	position: absolute;
+    width: 250px;
+    height:70px;
+	top:25%;
+	left:45%;
+}
+
+.PanelChoice4{
+	position: absolute;
+    width: 250px;
+    height:70px;
+	top:15%;
+	left:5%;
+}
+
+.PanelHome{
+	position: absolute;
+    width: 250px;
+    height:70px;
+	top:88%;
+	left:40%;
+}

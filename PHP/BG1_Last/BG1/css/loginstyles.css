@@ -1,0 +1,42 @@
+.PanelGameName{
+	position: absolute;
+    width: 400px;
+    height:120px;
+	top: 5%;
+	left: 35%;
+	font-weight: bold;
+	font-size: 200%;
+}
+
+.PanelLogin{
+	position: absolute;
+    width: 250px;
+    height:120px;
+	top: 25%;
+	left: 40%;
+}
+
+.PanelInfo{
+	position: absolute;
+    width: 400px;
+    height:400px;
+	top: 15%;
+	left: 35%;
+	background: #FFFFFF;
+	outline: 2px solid #FFFF00;
+}
+
+.PanelNav{
+	position: absolute;
+    width: 400px;
+    height:100px;
+	top: 85%;
+	left: 37%;
+}
+
+body{
+	background: url('../img/fon/1.jpg') 100% 100% no-repeat;
+	background-size: cover; 
+}
+
+//outline: 2px solid #ffff00;
