@@ -1,0 +1,64 @@
+.PanelGameName{
+	position: absolute;
+    width: 400px;
+    height:120px;
+	top: 5%;
+	left: 40%;
+	font-weight: bold;
+	font-size: 200%;
+}
+
+.PanelLogin{
+	position: absolute;
+    width: 250px;
+    height:120px;
+	top: 25%;
+	left: 40%;
+}
+
+.PanelRegistration{
+	position: absolute;
+    width: 250px;
+    height:120px;
+	top: 25%;
+	left: 70%;
+}
+
+.PanelHeroChoose{
+	position: absolute;
+    width: 250px;
+    height:120px;
+	top: 20%;
+	left: 5%;
+}
+
+.PanelHeroInfo{
+	position: absolute;
+    width: 250px;
+    height:120px;
+	top: 20%;
+	left: 35%;
+}
+
+.PanelInfo{
+	position: absolute;
+    width: 400px;
+    height:400px;
+	top: 15%;
+	left: 35%;
+	background: #FFFFFF;
+	outline: 2px solid #FFFF00;
+}
+
+.PanelNav{
+	position: absolute;
+    width: 400px;
+    height:100px;
+	top: 85%;
+	left: 37%;
+}
+
+body{
+	background-image: url('../img/fon/1.jpg');
+}
+

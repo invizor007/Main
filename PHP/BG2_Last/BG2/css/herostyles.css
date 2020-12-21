@@ -1,0 +1,57 @@
+.PanelArtMain{
+	position: absolute;
+    width: 350px;
+    height:400px;
+	top: 10px;
+	left: 10px;
+	outline: 3px solid #ffff00;
+}
+
+.PanelArtBag{
+	position: absolute;
+    width: 240px;
+    height: 80px;
+	top: 10px;
+	left: 370px;
+	outline: 3px solid #ffff00;
+}
+
+.PanelStat{
+	position: absolute;
+    width: 200px;
+    height: 260px;
+	top: 110px;
+	left: 370px;
+	outline: 3px solid #ffff00;
+}
+
+.PanelArena{
+	position: absolute;
+    width: 350px;
+    height: 260px;
+	top: 10px;
+	left: 650px;
+	outline: 3px solid #ffff00;
+}
+
+.HeroFind{
+	position: absolute;
+    width: 350px;
+    height: 100px;
+	top: 310px;
+	left: 650px;
+	outline: 3px solid #ffff00;
+}
+
+.Hunt{
+	position: absolute;
+    width: 100px;
+    height: 300px;
+	top: 10px;
+	left: 1010px;
+	outline: 3px solid #ffff00;
+}
+
+body{
+	background: url('../img/fon/1.jpg');
+}
