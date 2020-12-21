@@ -1,0 +1,119 @@
+.PanelBuild{
+	position: absolute;
+    width: 300px;
+    height: 600px;
+	top: 10px;
+	left: 10px;
+	outline: 3px solid #ffff00;
+	color: red;
+	font-size:100%;
+	padding: 5px;
+}
+
+.PanelArmy{
+	position: absolute;
+    width: 220px;
+    height: 600px;
+	top: 10px;
+	left: 330px;
+	outline: 3px solid #ffff00;
+	color: yellow;
+	font-size:120%;
+	padding: 5px;
+}
+
+.PanelRes{
+	position: absolute;
+    width: 180px;
+    height: 200px;
+	top: 10px;
+	left: 570px;
+	outline: 3px solid #ffff00;
+	color: yellow;
+	font-size:150%;
+	padding: 5px;
+}
+
+.PanelMove{
+	position: absolute;
+    width: 180px;
+    height: 200px;
+	top: 410px;
+	left: 570px;
+	outline: 3px solid #ffff00;
+	font-size:150%;
+	padding: 5px;
+}
+
+.PanelNaym{
+	position: absolute;
+    width: 220px;
+    height: 600px;
+	top: 10px;
+	left: 780px;
+	outline: 3px solid #ffff00;
+	color: red;
+	font-size:100%;
+	padding: 5px;
+}
+
+.PanelZd{
+	position: absolute;
+    width: 250px;
+    height: 600px;
+	top: 10px;
+	left: 1030px;
+	outline: 3px solid #ffff00;
+	color: yellow;
+	font-size:150%;
+	padding: 5px;
+}
+
+.ObjZdB{
+	outline: 3px;
+	color: red;
+	font-size:100%;
+	padding: 5px;
+}
+
+.ObjZd{
+	outline: 3px;
+	color: yellow;
+	font-size:100%;
+	padding: 5px;
+}
+
+.ObjU{
+	outline: 3px;
+	color: red;
+	font-size:100%;
+	padding: 5px;
+}
+
+.ObjN{
+	outline: 3px;
+	color: red;
+	font-size:100%;
+	padding: 5px;
+}
+
+.DivToSector{
+	position: absolute;
+    width: 200px;
+    height: 100px;
+	top: 650px;
+	left: 360px;
+}
+
+.DivToMap{
+	position: absolute;
+    width: 200px;
+    height: 100px;
+	top: 650px;
+	left: 810px;
+}
+
+
+body{
+	background: url('../img/fon/2.jpg');
+}

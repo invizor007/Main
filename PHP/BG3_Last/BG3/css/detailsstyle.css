@@ -1,0 +1,95 @@
+body{
+	background: url('../img/fon/4.jpg');
+}
+
+.MainDiv{
+	position: absolute;
+    width: 900px;
+    height:700px;
+	top:20px;
+	left:20px;
+	outline: 3px solid #ffff00;
+	background: #505070;
+	padding:3px;
+}
+
+.QuestInfo{
+	position: absolute;
+    width: 300px;
+    height:200px;
+	top:50px;
+	left:50px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#AAFF00;
+	padding:3px;
+}
+
+.EnterCode{
+	position: absolute;
+    width: 300px;
+    height:150px;
+	top:300px;
+	left:50px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#55AF00;
+	padding:3px;
+}
+
+.KeysInfo{
+	position: absolute;
+    width: 300px;
+    height:150px;
+	top:500px;
+	left:50px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#00AF00;
+	padding:3px;
+}
+
+
+.ChooseEPL{
+	position: absolute;
+    width: 300px;
+    height:200px;
+	top:50px;
+	left:550px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;
+	padding:3px;
+}
+
+.KeyDigitsInfo{
+	position: absolute;
+    width: 300px;
+    height:150px;
+	top:300px;
+	left:550px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;
+	padding:3px;
+}
+
+.KeyEDigitsInfo{
+	position: absolute;
+    width: 300px;
+    height:150px;
+	top:500px;
+	left:550px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;
+	padding:3px;
+}
+
+#mininum1 {
+  width: 4em;
+}
+
+#mininum2 {
+  width: 4em;
+}

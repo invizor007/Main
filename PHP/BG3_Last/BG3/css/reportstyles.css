@@ -1,0 +1,117 @@
+body{
+	background: url('../img/fon/3.jpg');
+}
+
+
+.PanelYArmy{
+	position: absolute;
+    width: 100px;
+    height:600px;
+	top:50px;
+	left:50px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;
+}
+
+.PanelEArmy{
+	position: absolute;
+    width: 100px;
+    height:600px;
+	top:50px;
+	left:180px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;	
+}
+
+.PanelRArmy{
+	position: absolute;
+    width: 100px;
+    height:600px;
+	top:50px;
+	left:310px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;	
+}
+
+.PanelBonuses{
+	position: absolute;
+    width: 100px;
+    height:350px;
+	top:50px;
+	left:750px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;	
+}
+
+.PanelBattleRes{
+	position: absolute;
+    width: 100px;
+    height:200px;
+	top:450px;
+	left:750px;
+	outline: 3px solid #ffff00;
+	background: #AFAFFF;
+	color:#ff0000;	
+}
+
+.LabelVS {
+	position: absolute;
+    width: 40px;
+    height:40px;
+	top:300px;
+	left:155px;
+	color:#ff0000;
+}
+
+.LabelAR1 {
+	position: absolute;
+    width: 40px;
+    height:40px;
+	top:300px;
+	left:285px;
+	color:#ff0000;
+}
+
+.LabelBS {
+	position: absolute;
+    width: 100px;
+    height:60px;
+	top:300px;
+	left:500px;
+	color:#ff0000;
+	outline: 3px solid #ffff00;
+}
+
+.LabelF1 {
+	position: absolute;
+    width: 100px;
+    height:40px;
+	top:700px;
+	left:50px;
+	color:#ff0000;
+	outline: 3px solid #ffff00;
+}
+
+.LabelF2 {
+	position: absolute;
+    width: 100px;
+    height:40px;
+	top:700px;
+	left:180px;
+	color:#ff0000;
+	outline: 3px solid #ffff00;
+}
+
+.LabelF3 {
+	position: absolute;
+    width: 100px;
+    height:40px;
+	top:700px;
+	left:310px;
+	color:#ff0000;
+	outline: 3px solid #ffff00;
+}
