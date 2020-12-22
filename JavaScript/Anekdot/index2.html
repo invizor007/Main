@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+<title>Случайный анекдот 2</title>
+</head>
+
+<script>
+function getFile(event) 
+{
+	const reader = new FileReader();
+	reader.onload = function(event) {
+		document.getElementById('content-target').value = event.target.result;
+		//alert(document.getElementById('content-target').value);
+	};	
+    reader.readAsText(event.target.files[0]);	
+}
+
+function show()
+{
+	var strall = document.getElementById('content-target').value;
+	var strmas = strall.split('##');
+	//alert(strmas.length);
+	var num = Math.floor(Math.random()*strmas.length);
+	alert(strmas[num]);
+}
+
+</script>
+
+
+<body onload="document.getElementById('input-file').addEventListener('change', getFile);">
+<input type = "file" id='input-file' value="Загрузить данные"><br>
+<input type = "button" id='button' value="Показать анекдот" onClick="show()"><br>
+<textarea id="content-target" hidden></textarea>
+
+</body>
+</html>

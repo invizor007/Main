@@ -1,0 +1,98 @@
+﻿<html>
+<head>
+<title>Случайный анекдот 3</title>
+</head>
+
+<script>
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+var strall;
+var strmas;
+var co = 0;
+
+function CreateTable()
+{
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+db.transaction(function (tx) 
+	{
+		tx.executeSql('CREATE TABLE IF NOT EXISTS t1 (id integer primary key autoincrement, name)');
+	});
+}
+
+function InsertRow(txt)
+{
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+db.transaction(function (tx) 
+	{
+		tx.executeSql('INSERT INTO t1 (name) VALUES (?)', [txt]);
+	});
+}
+
+function getFile(event) 
+{
+	const reader = new FileReader();
+	reader.onload = function(event) {
+		document.getElementById('content-target').value = event.target.result;
+		strall = document.getElementById('content-target').value;
+		strmas = strall.split('##');
+		co = strmas.length;
+		document.getElementById('aneknum').value = Math.floor(Math.random()*co);
+	
+		CreateTable();
+		for (var i=0;i<co;i++)
+		{
+			InsertRow(strmas[i]);
+		}		
+	};	
+    reader.readAsText(event.target.files[0]);
+}
+
+function showrnd()
+{
+	var num = Math.floor(Math.random()*strmas.length);
+	alert(strmas[num]);
+}
+
+function OutRow(id,name)
+{
+	var row= document.createElement("tr");
+	var idCell=document.createElement("td");
+	var nameCell=document.createElement("td");
+	idCell.textContent=id;
+	nameCell.textContent=name;
+	row.appendChild(idCell);
+	row.appendChild(nameCell);
+	document.getElementById("tabletable").appendChild(row);
+}
+
+function show5()
+{
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+document.getElementById("tabletable").innerHTML = '<th width = 50>Номер</th> <th>Текст</th>';
+var querystr = 'SELECT name from t1 where id>'+document.getElementById('aneknum').value;
+db.transaction(function (tx)
+	{tx.executeSql(querystr,[],function (tx,result)
+		{for (var i=1;i<=5;i++)
+			{
+				var item=result.rows.item(i);
+				OutRow(i,item.name);
+			}
+		});
+	});
+}
+
+
+</script>
+
+<body onload="document.getElementById('input-file').addEventListener('change', getFile);">
+
+<input type = "file" id='input-file' value="Загрузить данные"><br>
+<input type="button" value="Случайный анекдот" onclick="showrnd();"><br>
+<input type="number" id="aneknum" value = 0><br>
+<input type="button" value="5 анекдотов" onclick="show5();"><br>
+<table id="tabletable" border="1" cellspacing="0" style="width:100%">
+	<th width = 50>Номер</th> <th>Текст</th>
+</table>
+
+<textarea id="content-target" hidden></textarea>
+</body>
+</html>

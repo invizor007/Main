@@ -1,0 +1,89 @@
+@charset "windows-1251";
+
+
+BODY {
+  background-image:url(fon1.jpg);
+  background-repeat: inherit;
+  background-position: bottom;
+  background-color: #FFFFFF;
+  color:#000000;
+}
+
+TD {
+  color: #000011;
+  font-size: 100%;
+  valign:top;
+}
+
+OL,UL{
+  color:#002222;
+}
+
+A:link {
+  color: #000044;
+  text-decoration: underline;
+}
+
+A:visited {
+  color: #007777;
+  text-decoration: underline;
+}
+
+A:active {
+  color: #001111;
+  text-decoration: underline;
+}
+
+TD.link {
+  background: #1f5ca1;
+}
+
+TD.vlink {
+  background: #1f5ca1;
+}
+
+TD.alink {
+  background: #1f5ca1;
+}
+
+.small {
+  font-size: 85%;
+}
+
+H1 {   
+  font-size: 150%;
+  font-weight: bold;
+  color: #000044;
+  text-align: center;
+}
+
+H2 {
+  font-size: 120%;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+H3 {
+  background: #bbffbb;
+  color: #000000;
+  text-align: center; 
+  font-size: 100%;
+  font-weight: bold;
+}
+
+H4 {   
+  font-size: 100%;
+}
+
+H5 {
+   
+  font-size: 150%;
+  font-weight: bold;
+  color: #FF0000;
+}
+
+H6 {
+   
+  font-size: 90%;
+  font-weight: bold;
+}
