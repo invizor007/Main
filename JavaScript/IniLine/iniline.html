@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<title>Формирование линейки инициативы</title>
+<style>
+.btn {
+  background-color: #4CAF50;
+  border: 2px solid #000080;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  outline: 2px;
+}
+
+.inf {
+    width: 600px;
+    height:500px;
+
+}
+
+</style>
+
+<script>
+var db= openDatabase('db','1.0','dbunits',2*1024*1024);
+
+function CreateTable()
+{
+var db= openDatabase('db','1.0','dbunits',2*1024*1024);
+db.transaction(function (tx) 
+	{
+		tx.executeSql('CREATE TABLE IF NOT EXISTS t1 (id integer primary key autoincrement, name, value)');
+	});
+
+}
+
+function DeleteTable()
+{
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+db.transaction(function (tx) 
+	{
+		tx.executeSql('DROP TABLE t1');
+	});
+alert('Таблица удалена');
+}
+
+function InsertRow()
+{
+var thisname=document.getElementById("tx21").value; 
+var thisvalue=document.getElementById("tx22").value;
+if ( (thisname=='')||(thisvalue=='') ) {alert('Необходимо заполнить поля ключ и значение');return;}
+
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+db.transaction(function (tx) 
+	{
+		tx.executeSql('INSERT INTO t1 (name,value) VALUES (?,?)', [thisname,thisvalue]);
+	});
+alert('Строка добавлена');
+}
+
+function InsertStandartRows()
+{
+var names=["Фурия","Цербер","Призрак"]; 
+var values=["16","13","10"];
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+
+db.transaction(function (tx) 
+	{
+		tx.executeSql('DELETE FROM t1 WHERE 1=1;');
+	});
+
+db.transaction(function (tx) 
+	{
+	for (var i=0;i<names.length;i++)
+		{tx.executeSql('INSERT INTO t1 (name,value) VALUES (?,?)', [names[i],values[i]]);}
+	});
+	
+alert('Выбрана опция по умолчанию');
+}
+
+
+function DeleteRow()
+{
+var thisname=document.getElementById("tx21").value; 
+var thisvalue=document.getElementById("tx22").value;
+if ( (thisname=='')&&(thisvalue=='') ) {alert('Необходимо заполнить поля ключ или значение');return;}
+
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+db.transaction(function (tx) 
+	{
+	if (thisname!='')
+		{tx.executeSql('DELETE FROM t1 WHERE name=?;',[thisname]);}		
+	});
+		
+alert('Строка удалена');
+}
+
+
+function OutRow(id,name,value)
+{
+	var row= document.createElement("tr");
+	var idCell=document.createElement("td");
+	var nameCell=document.createElement("td");
+	var valueCell=document.createElement("td");
+	idCell.textContent=id;
+	nameCell.textContent=name;
+	valueCell.textContent=value;
+	row.appendChild(idCell);
+	row.appendChild(nameCell);
+	row.appendChild(valueCell);
+	document.getElementById("tabletable").appendChild(row);
+}
+
+
+function DoSelect()
+{
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+document.getElementById("tabletable").innerHTML = '<th>№</th> <th>Название</th> <th>Значение</th>';
+db.transaction(function (tx)
+	{tx.executeSql('SELECT * from t1',[],function (tx,result)
+		{for (var i=0;i<result.rows.length;i++)
+			{
+				var item=result.rows.item(i);
+				OutRow(i+1,item.name,item.value);
+			}
+		});
+	});
+}
+
+
+function Calc()
+{
+var db= openDatabase('db','1.0','my first database',2*1024*1024);
+document.getElementById("tabletable").innerHTML = '<th>№</th> <th>Название</th> <th>Значение</th>';
+var ini_values=[];
+var vol=document.getElementById("tx11").value; 
+var linecount=document.getElementById("tx12").value;
+var linesum=0, all_count = 0;
+var ini_line = [], ini_coef= [], temp_val = [], temp_count = [];
+var names = [];
+
+db.transaction(function (tx)
+	{tx.executeSql('SELECT * from t1',[],function (tx,result)
+		{for (var i=0;i<result.rows.length;i++)
+			{
+				var item=result.rows.item(i);
+				names[i]=item.name;
+				var r = 1+0.01*(Math.random()*vol-vol/2); //alert(r);
+				ini_values[i] = item.value*r; //alert(item.value);
+				temp_val[i]=ini_values[i];
+				temp_count[i] = 0; //alert(ini_values[i]); alert(item.value); alert(ini_values[i]);
+				linesum += ini_values[i];
+			}
+		
+		for (var i=0;i<result.rows.length;i++)
+		{
+			ini_coef[i] = ini_values[i]/linesum; //alert(ini_coef[i]);
+		}
+		//alert(linecount);
+		for (var i=0;i<linecount;i++)
+		{
+			//опредение текущего коэффициента
+			for (var j=0;j<result.rows.length;j++)
+			{
+				if (all_count>0) 
+				{
+					temp_val[j] = ini_coef[j] - temp_count[j]/all_count; //alert(temp_count[j]);alert(all_count);
+				}
+				else
+				{
+					temp_val[j] = ini_coef[j];
+				}
+			}
+				//alert(temp_val[0]); alert(temp_val[1]); alert(temp_val[2]);
+			
+			//опредение максимального коэффициента
+			var max_val=-2, j_max=-1;
+			for (var j=0;j<result.rows.length;j++)
+			{
+				if (temp_val[j]>max_val)
+				{
+					j_max = j;
+					max_val = temp_val[j];
+				}
+			}
+			//alert(j_max);
+			//учет хода и переход к следующему шагу
+			ini_line[i]=j_max;
+			temp_count[j_max]++;
+			all_count++;
+		}
+		
+		
+		for (var i=0;i<linecount;i++)
+		{
+			OutRow(i+1,ini_line[i]+1,names[ini_line[i]]);
+		}
+		
+		});
+	});
+}
+
+
+</script>
+
+<body onload="CreateTable();" style="background-color:#90A0F0">
+<h3>Основная информация</h3>
+
+Процент отклонения <input type=text id="tx11" value="10">
+Количество ходов <input type=text id="tx12" value="10">
+
+<h3>Изменение состава</h3>
+
+Название <input type=text id="tx21" value="Лесной спайпер">
+Значение <input type=text id="tx22" value="11">
+
+<br><br>
+
+<input type=button name="btn1" class="btn" value="Добавить" onclick="InsertRow();">
+<input type=button name="btn2" class="btn" value="Удалить" onclick="DeleteRow();">
+<input type=button name="btn3" class="btn" value="По умолчанию" onclick="InsertStandartRows();"><br>
+<input type=button name="btn4" class="btn" value="Просмотреть таблицу" onclick="DoSelect();">
+<input type=button name="btn5" class="btn" value="Сделать рассчет" onclick="Calc();">
+<br><br>
+
+<div class="inf">
+<table id="tabletable" border="1" cellspacing="0" style="width:100%">
+	<th>№</th> <th>Название</th> <th>Значение</th>
+</table>
+</div>
+
+
+</body>
+</html>
