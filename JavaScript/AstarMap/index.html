@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><title>А* на карте</title></head>
+
+<link rel="stylesheet" href="css.css">
+
+<script language="javascript">
+var a= [];
+var imgs=[];
+var sx=0,sy=0,ex=0,ey=0;
+
+function ImageInit()
+{
+	for (var i=0;i<=1;i++)
+	{
+		var tmp = new Image();
+		tmp.src = ""+i+".bmp";
+		imgs.push(tmp);
+	}
+}
+
+function ArraysInit()
+{
+	for (var i=0;i<15;i++)
+	{
+		a[i]=[];
+		for (var j=0;j<25;j++)
+		{
+			a[i][j]=0;
+		}
+	}
+}
+
+function GenerateMap()
+{
+	for (var i=0;i<15;i++)
+	{
+		for (var j=0;j<25;j++)
+		{
+			if (Math.random()<0.1)
+			{
+				a[i][j]=1;
+			}
+			else
+			{
+				a[i][j]=0;
+			}
+		}
+	}
+}
+
+function DrawMap(t)
+{
+	var canvas = document.getElementById("canvas1");
+	var ctx = canvas.getContext('2d');
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	for (var i=0;i<15;i++)
+	{
+		for (var j=0;j<25;j++)
+		{		
+			ctx.drawImage(imgs[a[i][j]%10], j*40, i*40);
+		}
+	}
+	
+	if (t==1)
+	{
+		ctx.strokeStyle = "#FF0000";
+		ctx.font = 'bold 12px Arial';	
+		for (var i=0;i<15;i++)
+		{
+			for (var j=0;j<25;j++)
+			{
+				var txt = Math.floor(a[i][j]/100)+"";
+				var clr = Math.floor(a[i][j]/10) % 10;
+				if (clr==0) {ctx.fillStyle = "#0000FF";}
+				else if (clr==1) {ctx.fillStyle = "#00FF00";}
+				else {ctx.fillStyle = "#FF0000";}
+				
+				ctx.fillText(txt, j*40+10, i*40+10);
+				if ((i==sy)&&(j==sx))
+				{
+					ctx.strokeText('S', j*40+20, i*40+20);
+				}
+				if ((i==ey)&&(j==ex))
+				{
+					ctx.strokeText('E', j*40+20, i*40+20);
+				}				
+			}
+		}	
+	}
+}
+
+function SetDefault()
+{
+	sx=1;sy=2;ex=3;ey=5;
+}
+
+function SetStart()
+{
+	sx=document.getElementById("text1").value;
+	sy=document.getElementById("text2").value;
+	alert("Установлено");
+}
+
+function SetFinish()
+{
+	ex=document.getElementById("text3").value;
+	ey=document.getElementById("text4").value;
+	alert("Установлено");
+}
+
+function BadStartEnd()
+{
+	if (a[sy][sx]==1) return 1;
+	if (a[ey][ex]==1) return 1;
+	return 0;
+}
+
+function Dist(x1,x2,y1,y2)
+{
+	var dx = Math.abs(x1-x2);
+	var dy = Math.abs(y1-y2);
+	
+	if (dx>dy)
+	{
+		return dy*14+(dx-dy)*10;
+	}
+	else
+	{
+		return dx*14+(dy-dx)*10;
+	}
+}
+
+function Calc()
+{
+	if (BadStartEnd()==1)
+	{
+		alert('Старт и финиш не должен находиться на препятствии');
+		return;
+	}
+	
+	for (var i=0;i<15;i++)
+	{
+		for (var j=0;j<25;j++)
+		{		
+			if (a[i][j]>9) {a[i][j]=0;}
+		}
+	}
+	a[sy][sx] = Dist(sx,ex,sy,ey)*100+10;
+
+	var b = true;
+	while (b)
+	{
+		b = AlgStep();
+	}
+	
+	alert('Расстояние = '+Math.floor(a[ey][ex]/100));
+	DrawMap(1);
+}
+
+//Алгоритм шага. Код ячейки:
+//Первый символ 01 - препятствие. Второй 012- принадлежность открыто\закрыто. Третий, четвертый, и т.д. - оценка расстояния
+function AlgStep()
+{
+	//1. Выбираем вершину с минимальной оценкой среди открытых
+	minv=1000, xminv=-1, yminv = -1;
+	for (var i=0;i<15;i++)
+	{
+		for (var j=0;j<25;j++)
+		{
+			if ( (a[i][j] % 10 == 0) && (Math.floor(a[i][j]/10) % 10 == 1) )
+			{
+				var temp = Math.floor(a[i][j]/100);
+				if (temp<minv)
+				{
+					yminv = i;
+					xminv = j;
+					minv = temp;
+				}
+			}
+		}
+	}
+	//alert('X1');
+	if (minv==1000)
+	{
+		return false;
+	}
+	
+	var af0=Math.floor(a[yminv][xminv]/100);
+	var ah0 = Dist(xminv,ex,yminv,ey);
+	var ag0 = af0 - ah0;
+	//alert('X2');
+	//2. Для соседей этой вершины рассчитываем коэффициенты и меняем статус open/close
+	for (var i=-1;i<=1;i++)
+	{
+		for (var j=-1;j<=1;j++)
+		{
+			if ((xminv+j>=0)&&(xminv+j<25)&&(yminv+i>=0)&&(yminv+i<15)&&(i*i+j*j>0))
+			{
+				var temp = a[yminv+i][xminv+j];
+				if ( (Math.floor(temp/10) % 10 < 2) && (temp % 10 == 0) )
+				{
+					var incr = 10;
+					if (i*i+j*j==2)
+					{
+						incr = 14;
+					}
+					var agtmp = ag0+incr;
+					var aftmp = agtmp+Dist(xminv+j,ex,yminv+i,ey);
+					if ( (temp==0)||(temp>aftmp*100) )
+					{
+						a[yminv+i][xminv+j] = aftmp*100+10+0;
+					}
+				}
+			}
+		}
+	}
+	a[yminv][xminv]+=10;
+	//alert('X3');
+	if ((yminv==ey)&&(xminv==ex))
+	{
+		return false;
+	}
+	return true;
+}
+
+</script>
+
+<body onload="ImageInit();ArraysInit();">
+
+<div class = "PanelMap">
+<canvas width=1000 height=600 id="canvas1">
+</canvas>
+</div>
+
+
+<div class = "PanelControl">
+<input type=button value="Создать карту" onClick="GenerateMap();DrawMap(0);SetDefault();"><br><br>
+<input type=button value="Установить старт в:" onClick="SetStart()"><br><br>
+<input type="number" id="text1" value="1"><br><br>
+<input type="number" id="text2" value="2"><br><br>
+<input type=button value="Установить финиш в:" onClick="SetFinish()"><br><br>
+<input type="number" id="text3" value="3"><br><br>
+<input type="number" id="text4" value="5"><br><br>
+<input type=button value="Сделать расчет" onClick="Calc()">
+</div>
+
+</body>
+</html>

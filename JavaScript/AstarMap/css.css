@@ -1,0 +1,67 @@
+body{
+	background: url('fon.jpg');
+}
+
+
+.PanelMap{
+	position: absolute;
+    width: 1000px;
+    height:600px;
+	top:50px;
+	left:50px;
+}
+
+.PanelControl{
+	position: absolute;
+    width: 200px;
+    height:300px;
+	top:150px;
+	left:1100px;
+	background: #AFAFFF;
+	outline: 2px solid #FFFF00;
+	margin: 10px 15px 20px 20px;
+	padding: 10px 10px 15px 15px;
+}
+
+.UpBtnTab{
+	position: absolute;
+    width: 1000px;
+    height:30px;
+	top:20px;
+	left:50px;	
+	color:#ff0000;
+	background-color:#ffff00;
+	vertical-align: middle;
+}
+
+.DownBtnTab{
+	position: absolute;
+    width: 1000px;
+    height:30px;
+	top:650px;
+	left:50px;	
+	color:#ff0000;
+	background-color:#ffff00;
+	vertical-align: middle;
+}
+
+.LeftBtnTab{
+	position: absolute;
+    width: 30px;
+    height:600px;
+	top:50px;
+	left:20px;	
+	color:#ff0000;
+	background-color:#ffff00;
+}
+
+.RightBtnTab{
+	position: absolute;
+    width: 30px;
+    height:600px;
+	top:50px;
+	left:1050px;	
+	color:#ff0000;
+	background-color:#ffff00;
+	vertical-align: middle;
+}
