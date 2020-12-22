@@ -1,0 +1,4 @@
+https://developer.mozilla.org/ru/docs/Web/HTML/Element/audio
+http://htmlbook.ru/html/audio
+https://html5book.ru/html5-audio/
+https://developer.mozilla.org/ru/docs/Web/Guide/Events/Media_events

@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8"/>
+<title>Пример видео в html5</title>
+
+<script>
+
+function timertick()
+{
+	var drt = document.getElementById('player').duration;//alert(1);
+	var tm = document.getElementById('player').currentTime;
+	if (tm>0)
+	{
+		document.getElementById("timerstring").innerHTML=Math.trunc(tm)+" of "+Math.trunc(drt)+" seconds";	
+	}
+	else
+	{
+		document.getElementById("timerstring").innerHTML=Math.trunc(drt)+" seconds";
+	}
+	setTimeout('timertick()', 100);
+
+}
+
+function settimer()
+{
+	setTimeout('timertick()', 100);
+}
+
+function volumeplus()
+{
+	if (document.getElementById('player').volume+0.1<1)
+	{
+		document.getElementById('player').volume+=0.1;
+	}
+	else
+	{
+		document.getElementById('player').volume=1;
+	}
+}
+
+function volumeminus()
+{
+	if (document.getElementById('player').volume-0.1>0)
+	{
+		document.getElementById('player').volume-=0.1;
+	}
+	else
+	{
+		document.getElementById('player').volume=0;
+	}
+}
+
+function stepplus()
+{
+	if (document.getElementById('player').currentTime+10<document.getElementById('player').duration)
+	{
+		document.getElementById('player').currentTime+=5;
+	}
+	else
+	{
+		document.getElementById('player').currentTime=document.getElementById('player').duration-5;
+	}
+}
+
+function stepminus()
+{
+	if (document.getElementById('player').currentTime-5>0)
+	{
+		document.getElementById('player').currentTime-=5;
+	}
+	else
+	{
+		document.getElementById('player').currentTime=0;
+	}
+}
+
+</script>
+
+<body onload="settimer()">
+<h1>Пример видео в html5</h1>
+
+<table>
+<tr>
+<td width=800>
+<video width="800" id="player" controls>
+	<source src="video/movie1.mp4" type="video/mp4">
+	<source src="video/movie3.mp4" type="video/mp4">
+	<source src="video/movie2.avi" type="video/avi">			
+	<source src="video/movie1.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+</td>
+
+<td width=390 valign="top">
+<div id="controls">
+Панель управления<br>
+	<img src="img/play.png" onclick="document.getElementById('player').play()" alt="Play">
+	<img src="img/pause.png" onclick="document.getElementById('player').pause()" alt="Pause">
+	<img src="img/volumem.png" onclick="volumeminus()" alt="Volume-">
+	<img src="img/volumep.png" onclick="volumeplus()" alt="Volume+"><br>
+	<img src="img/begin.png" onclick="document.getElementById('player').currentTime=0" alt="Begin">
+	<img src="img/stepm.png" onclick="stepminus()" alt="Step-">
+	<img src="img/stepp.png" onclick="stepplus()" alt="Step+">
+	<img src="img/end.png" onclick="document.getElementById('player').currentTime=document.getElementById('player').duration-5" alt="End"><br>	
+</div>
+
+<div id="timerstring">
+
+</div>
+</td>
+
+
+
+</body>
+</html>
