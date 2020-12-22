@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Мореплаватель</title>
+</head>
+<script type="text/javascript" src="stages.json"></script>
+<script src="script.js"></script>
+
+<link rel="stylesheet" href="styles.css">
+
+<body onLoad="ImagesInit();timer();">
+<div class="main_div">
+	
+	<div class="title_div">
+		<canvas id = "canvast" width="700" height="30"></canvas>
+	</div>
+	
+	<div class="title2_div">
+		<canvas id = "canvast2" width="150" height="30"></canvas>
+	</div>
+	
+	<div class="title3_div">
+		<canvas id = "canvast3" width="150" height="30"></canvas>
+	</div>		
+
+    <div class="sea_div">
+		<canvas id = "canvas1" width="800" height="600"></canvas>
+	</div>
+    
+	<div class="res_div" onClick="Action1Click(event)">
+		<canvas id = "canvas2" width="950" height="100"></canvas>
+	</div>
+    
+	<div class="army_div">
+		<canvas id = "canvas3" width="150" height="600"></canvas>
+	</div>
+	
+	<div class="bat_div" onClick="Action2Click(event)" onmousemove="Action2Move(event)">
+		<canvas id = "canvas4" width="150" height="350"></canvas>
+	</div>	
+
+</div>
+</body>
+
+</html>
+
+
