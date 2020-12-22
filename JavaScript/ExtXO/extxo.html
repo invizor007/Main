@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ExtXO</title>
+</head>
+
+<script type="text/javascript" src="script.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles.css">
+
+<body onload="GameInit();">
+	
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="GamePanel1" id = "Panel1">
+      <label for="LabelPlayerCount" class="GameLabelLong" id="LabelPlayerCount">Введите количество игроков от 2 до 4</label>
+      <input type="number" value="4" id="ChoosePlayerCount">
+      <button class = "btn btn-default GameBtnT1" id="StartGame" onclick="GameStart()">Начать игру</button>
+    </div>
+
+    <div class="GamePanel2" id = "Panel2" >
+		<canvas id="cnv1" width=600 height=600></canvas>
+    </div>
+
+    <div class="GamePanel3" id = "Panel3" >
+		<label for="LabelCurrH" class="GameLabelLong" id="LabelCurrH">Ход номер: </label><br>
+		<label for="LabelCurrPl" class="GameLabelLong" id="LabelCurrPl">Игрок номер: </label><br>
+		<label for="LabelCurrD" class="GameLabelLong" id="LabelCurrD">Ставится цифра: </label><br>
+		<label for="LabelCurrCo" class="GameLabelLong" id="LabelCurrCo">Установлено цифр: </label><br>
+		
+		<br><br>
+		<label for="LabelSco1" class="GameLabel" id="LabelSco1">Очки игрок 1: </label><br>
+		<label for="LabelSco2" class="GameLabel" id="LabelSco2">Очки игрок 2: </label><br>
+		<label for="LabelSco3" class="GameLabel" id="LabelSco3">Очки игрок 3: </label><br>
+		<label for="LabelSco4" class="GameLabel" id="LabelSco4">Очки игрок 4: </label><br>
+    </div>
+
+  </div>
+
+</nav>
+
+</body>
+</html>

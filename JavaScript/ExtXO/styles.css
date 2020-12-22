@@ -1,0 +1,53 @@
+
+.GamePanel1{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+    width: 810px;
+    height:35px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+.GamePanel2{
+	position: absolute;
+	left: 10px;
+	top: 60px;
+    width: 600px;
+    height:600px;
+}
+
+.GamePanel3{
+	position: absolute;
+	left: 620px;
+	top: 60px;
+    width: 200px;
+    height:600px;
+	color:#000000;
+	background-color:#8080ff;
+}
+
+
+.GameBtnT1{
+    width: 130px;
+    height:30px;
+	color:#000000;
+	background-color:#0000ff;
+}
+
+.GameLabel{
+    width: 200px;
+    height:25px;
+	color:#000000;
+	background-color:#80ff80;
+}
+
+.GameLabelLong{
+    width: 300px;
+    height:25px;
+	color:#000000;
+	background-color:#80ff80;
+}
+
+
+
