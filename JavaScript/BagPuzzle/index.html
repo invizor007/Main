@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Задача о рюкзаке</title>
+	
+<style>
+.btn1 {
+  background-color: #4CAF50;
+  border: 2px solid #000080;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  outline: 2px;
+}
+
+.td1 {
+  background-color: #FFCCCC;
+  border: 2px solid #000080;
+  text-align: center;
+  font-size: 16px;
+  outline: 2px;
+}
+
+.td2 {
+  background-color: #AACCFF;
+  border: 2px solid #000080;
+  text-align: center;
+  font-size: 16px;
+  outline: 2px;
+}
+
+.p1 {
+  background-color: #CCFFCC;
+  border: 2px solid #000080;
+  font-size: 16px;
+  outline: 2px;
+  width: 320px;
+}
+
+.txtar1 {
+  background-color: #CCFFCC;
+  border: 2px solid #000080;
+  font-size: 14px;
+  outline: 2px;
+  width: 320px;
+  height: 200px;
+}
+
+.inf {
+    width: 500px;
+    height:750px;
+}
+
+body {
+	background: url(fon1.jpg) #FFCCCC;
+}
+
+</style>	
+
+<script>
+// http://murka.lark.ru/files/background/grafika-i-tekst/ фон отсюда
+// пробелы &nbsp; &#8194; &#8195;
+var BagItems = [];
+var CurrItem = -1;
+var bonuses = [];
+
+function UpdateItemsDiv()
+{
+	//alert("UpdateItemsDiv");
+	var tbody = document.getElementById("items_table").getElementsByTagName("TBODY")[0];
+	var co = tbody.children.length-1; //alert(co);
+	for (var i=0;i<co;i++)
+	{
+		var DelDOMItem = document.getElementById("itsr"+i);
+		DelDOMItem.parentNode.removeChild(DelDOMItem);
+	}
+	
+	
+	for (var i=0;i<BagItems.length;i++)
+	{
+		var AddDOMItem = document.createElement("tr");
+		AddDOMItem.id = "itsr"+i;
+		AddDOMItem.innerHTML = '<td class="td2"><input name="itemselect" type="radio" value="'+i+'" onchange="SelectItem(this)"> '+BagItems[i].name+'</td>';
+		AddDOMItem.innerHTML+= '<td class="td2">'+BagItems[i].weight+'</td>';
+		AddDOMItem.innerHTML+= '<td class="td2">'+BagItems[i].cost+'</td>';
+		tbody.appendChild(AddDOMItem);
+	}
+}
+
+
+function AddItem()
+{
+	//alert('AddItem');
+	var temp = {};
+	temp.name = document.getElementById("tempname").value;
+	temp.weight = Number.parseInt(document.getElementById("tempweight").value);
+	temp.cost = Number.parseInt(document.getElementById("tempcost").value);
+	BagItems.push(temp);
+	var newid = BagItems.length-1;
+	var AddDOMItem = document.createElement("tr");
+	AddDOMItem.id = "itsr"+newid;
+	AddDOMItem.innerHTML = '<td class="td2"><input name="itemselect" type="radio" value="'+newid+'" onchange="SelectItem(this)"> '+temp.name+'</td>';
+	AddDOMItem.innerHTML+= '<td class="td2">'+temp.weight+'</td>';
+	AddDOMItem.innerHTML+= '<td class="td2">'+temp.cost+'</td>';
+	var tbody = document.getElementById("items_table").getElementsByTagName("TBODY")[0];
+	tbody.appendChild(AddDOMItem);
+}
+
+function EditItem()
+{
+	//alert('EditItem');
+	if (CurrItem<0) return;
+	BagItems[CurrItem].name = document.getElementById("tempname").value;
+	BagItems[CurrItem].weight = Number.parseInt(document.getElementById("tempweight").value);
+	BagItems[CurrItem].cost = Number.parseInt(document.getElementById("tempcost").value);
+	CurrDOMItem = document.getElementById("itsr"+CurrItem);
+	CurrDOMItem.innerHTML = '<td class="td2"><input name="itemselect" type="radio" value="'+CurrItem+'" onchange="SelectItem(this)"> '+BagItems[CurrItem].name+'</td>'
+	+'<td class="td2">'+BagItems[CurrItem].weight+'</td>'
+	+'<td class="td2">'+BagItems[CurrItem].cost+'</td>';
+}
+
+function SelectItem(itemselect)
+{
+	//alert('SelectItem');
+	CurrItem = Number.parseInt(itemselect.value);
+	document.getElementById("tempname").value = BagItems[CurrItem].name;
+	document.getElementById("tempweight").value = BagItems[CurrItem].weight;
+	document.getElementById("tempcost").value = BagItems[CurrItem].cost;
+}
+
+function DelItem()
+{
+	//alert('DelItem');
+	if (CurrItem<0) return;
+	BagItems.splice(CurrItem,1);
+	var DelDOMItem = document.getElementById("itsr"+CurrItem);
+	DelDOMItem.parentNode.removeChild(DelDOMItem);
+	for (var i=CurrItem+1;i<=BagItems.length;i++)
+	{
+		var newid = i-1;
+		document.getElementById("itsr"+i).id = "itsr"+newid;
+	}
+}
+
+function DefaultItems()
+{
+	//alert('DefaultItems');
+	BagItems = [];
+	var temp = {name:"Мясо",weight:2,cost:3};
+	BagItems.push(temp);
+	var temp = {name:"Хлеб",weight:3,cost:4};
+	BagItems.push(temp);
+	UpdateItemsDiv();
+}
+
+function byField(field) {
+  return (a, b) => a[field] < b[field] ? 1 : -1;
+}
+
+function Calc()
+{
+	//alert('Calc');
+	BagCalcInfo = [];
+	var co = BagItems.length;
+	var bagsize = Number.parseInt(document.getElementById("bagsize").value);
+	document.getElementById("textarea1").innerHTML = '';
+	
+	//Жадный алгоритм
+	//определяем отношение стоимость\вес для каждого элемента
+	for (var i=0;i<co;i++)
+	{
+		var temp = {};
+		temp.id = i;
+		temp.bonus = BagItems[i].cost/BagItems[i].weight;
+		temp.count = 0;
+		BagCalcInfo.push(temp);
+	}
+	//Сортировка массива
+	BagCalcInfo.sort(byField('bonus'));
+	var tempsize = bagsize;
+	for (var i=0;i<co;i++)
+	{
+		BagCalcInfo[i].count = Math.floor(tempsize/BagItems[BagCalcInfo[i].id].weight);
+		tempsize=tempsize-BagCalcInfo[i].count*BagItems[BagCalcInfo[i].id].weight;
+	}
+	var res=0;
+	for (var i=0;i<co;i++)
+	{
+		res+= BagCalcInfo[i].count * BagItems[BagCalcInfo[i].id].cost;
+	}
+	document.getElementById("textarea1").innerHTML+="Жадный "+res+" ";
+	
+	//Динамическое программирование
+	var DPSet = [], DPResArray=[], DPSetStart = [];
+	for (var i=0;i<co;i++) DPSetStart.push(0);
+	DPSet.push(DPSetStart);
+	DPResArray.push(0);
+	for (var tempsize=1;tempsize<=bagsize;tempsize++)
+	{
+		var DPTempRes = 0, IncItem = -1;
+		for (var i=0;i<co;i++)
+		{
+			if (tempsize-BagItems[i].weight>=0)
+			{
+				var temp = DPResArray[tempsize-BagItems[i].weight]+BagItems[i].cost;
+				if (temp>DPTempRes) {IncItem = i; DPTempRes = temp;} //alert(IncItem); alert(DPTempRes);
+			}
+		}
+		
+		if (IncItem>-1)
+		{
+			var DPTempItem=[];
+			for (var i=0;i<co;i++)
+				DPTempItem[i]=DPSet[tempsize-BagItems[IncItem].weight][i];
+			DPTempItem[IncItem]++;
+			DPSet.push(DPTempItem);
+			DPResArray.push(DPTempRes);
+		}
+		else
+		{
+			var DPTempItem=[];
+			for (var i=0;i<co;i++)
+				DPTempItem[i] = 0;
+			DPSet.push(DPTempItem);
+			DPResArray.push(0);
+		}
+	}
+	
+	document.getElementById("calcresult").value = DPResArray[bagsize];
+	document.getElementById("textarea1").innerHTML+="Динамическое "+DPResArray[bagsize]+". ";
+	for (var i=0;i<co;i++) document.getElementById("textarea1").innerHTML+=DPTempItem[i]+" ";
+}
+
+</script>
+
+</head>
+
+<body onload="DefaultItems()">
+<div class="main_div">
+
+<h3>Текущий элемент:</h3>
+
+<table>
+<tr>
+<td class="td1">Название</td>
+<td class="td1"><input id="tempname" type="text" value="Элемент1"></td>
+</tr>
+<tr>
+<td class="td1">Вес</td>
+<td class="td1"><input id="tempweight" type="number" value="5"></td>
+</tr>
+<td class="td1">Стоимость</td>
+<td class="td1"><input id="tempcost"  type="number" value="10"></td>
+</tr>
+</table>
+
+<input type="button" class="btn1" value="Добавить" onclick="AddItem()">
+<input type="button" class="btn1" value="Редактировать" onclick="EditItem()">
+<input type="button" class="btn1" value="Удалить" onclick="DelItem()">
+<input type="button" class="btn1" value="По умолчанию" onclick="DefaultItems()">
+
+<h3>Текущий состав:</h3>
+<div id="items_div" class="itemsdiv">
+<table id="items_table" border = 1>
+<tr id="itsdh">
+<td class="td2">Название</td>
+<td class="td2">Вес</td>
+<td class="td2">Стоимость</td>
+</tr>
+
+<tr id="itsr0">
+<td class="td2"><input name="itemselect" type="radio" value="0" onchange="SelectItem(this)"> Мясо</td>
+<td class="td2">2</td>
+<td class="td2">3</td>
+</tr>
+
+<tr id="itsr1">
+<td class="td2"><input name="itemselect" type="radio" value="1" onchange="SelectItem(this)"> Хлеб</td>
+<td class="td2">3</td>
+<td class="td2">4</td>
+</tr>
+
+</table>
+</div>
+
+<p class="p1"><b>Размер рюкзака:</b> <input id="bagsize" type="number" value="25"> </p>
+
+<input type="button" class="btn1" value="Рассчитать" onclick="Calc()">
+
+<p class="p1"><b>Результат:&#8195;&#8195;&#8195;</b> <input id="calcresult" type="text" value="0"> </p>
+</div>
+
+<textarea class="txtar1" id="textarea1"></textarea>
+
+</body>
+</html>
