@@ -1,0 +1,117 @@
+﻿<html>
+<head>
+<title>Справочное руководство по heroes imitation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css2.css">
+<body>
+<h1>Справочное руководство по heroes imitation</h1>
+<ul>
+<li>Содержание архива
+	<ul>
+	<li>1)Приложения-
+		<ul>
+		<li><a href="apps\CSServer.html">Сервер для сетевых игр типа киберспорт</a>
+		<li><a href="apps\MMOServer.html">Сервер для игр типа mmo(арена, королевство, мир)</a>
+		<li><a href="apps\Client.html">Клиент</a>
+		<li><a href="apps\MapEditor.html">Редактор карт</a>
+		<li><a href="apps\CampaignEditor.html">Редактор кампаний</a>
+		<li><a href="apps\BalanceEditor.html">Редактор баланса</a>
+		</ul>
+	<li>2)bmp файлы в папке bitmaps- различные картинки для игры и редактора(например картинки юнитов и объектов ), их можно редактировать в paint-e,заменять на свои, белый цвет-фон, черный -цвет игрока
+	<li>3)<a href=formats\F_HIF.html>hif файлы (heroes imitation files)</a>, 
+находятся в папке gameinf-файлы дополнительной информации о различных настройках в игре( параметры юнитов, цена зданий, миссии шпионов и т.д.) их можно с легкостью редактировать в блокноте, однако проще в редакторе баланса
+	<li>4) <a href=formats\F_HIM.html>him файлы- (heroes imitation maps)</a>- 
+в папке maps и папках кампаний-файлы карт в игре,формат тоже текстовый,но в блокноте их сложно редактировать, поэтому есть редакторе карт, где можно создавать и редактировать карты самому.
+<br><a href=mapdescr.html>Здесь</a> представлены описания всех карт и кампаний.
+	<li>5)<a href=formats\F_HIG.html>hig файлы(heroes imitation games)</a>-
+в папке save-файлы сохраненных игр, формат похожий на формат карт, с дополнениями.
+	<li>6)<a href=formats\F_HIC.html>hic-файлы(heroes imitation campaign)</a>-
+в папках кампаний-файлы кампаний- формат текстовый, чтобы редактировать можно использовать блотнот или редактор кампаний
+	<li>7)<a href=formats\F_HIAI.html>hiai файлы(heroes imitation artificial intelligence)</a> 
+в папке ai и папках кампаний, формат текстовый, древовидная структура, в конечных вершинах команды, в промежуточных фильтры, условия иногда присвоения, подробнее о ИИ <a href=other/AI.html>AI.html</a>
+        <li>8)<a href=formats\F_HICG.html>hicg файлы(heroes imitation campaign game)</a> 
+в папке сохраненных кампаний, как дополнения к обычному сохранению для кампаний,имеют простой текстовый формат
+
+        <li>9)<a href=formats\F_HIA.html>hia файлы(heroes imitation arena)</a> 
+в папке арен, хранит арену игрока(параметры героя, ресурсов и других различных особенностей), формат текстовый
+        <li>10)<a href=formats\F_HIK.html>hik файлы(heroes imitation kingdom)</a> 
+в папке королевств, хранит королевство игрока(карта с некоторыми дополнениями), текстовый формат
+        <li>11)<a href=formats\F_HIW.html>hiw файлы(heroes imitation world)</a> 
+в папке миров, хранит мир (формат похожий на карту с некоторыми дополнениями)
+        <li>12)<a href=formats\F_HIT.html>hit файлы(heroes imitation template)</a> 
+в папке шаблонов, хранит информацию о шаблонах для битвы
+        <li>13)<a href=formats\F_HID.html>hid файлы(heroes imitation description)</a> 
+в папке описаний, хранит исключительно строки для пояснения некоторых особенности игры в дополнении к hifs
+        <li>14)<a href=formats\F_HIDB.html>hidb файлы(heroes imitation database)</a> 
+в папке mmo-сервера, используется для хранения большого массива однотипной информации, например особенностей игрока.
+	</ul>
+<li>Руководство по игре
+	<ul>
+	<li>Города
+		<ul>
+		<li><a href=towns\Towns.html>Города</a>
+		<li>Расы
+			<ul>
+			<li><a href=towns\race\Races.html>Общее по расам</a>
+			<li><a href=towns\race\0.html>Замок</a>
+			<li><a href=towns\race\1.html>Оплот</a>
+			<li><a href=towns\race\2.html>Башня</a>
+			<li><a href=towns\race\3.html>Конфлюкс</a>
+			<li><a href=towns\race\4.html>Цитадель</a>
+			<li><a href=towns\race\5.html>Крепость</a>
+			<li><a href=towns\race\6.html>Темница</a>
+			<li><a href=towns\race\7.html>Некрополис</a>
+			<li><a href=towns\race\8.html>Инферно</a>
+			</ul>
+		<li>Здания
+			<ul>
+			<li><a href=towns\zd\ZdBasic.html>Базовые здания</a>
+			<li><a href=towns\zd\ZdUnits.html>Здания существ</a>
+			<li><a href=towns\zd\ZdRace.html>Здания рас</a>
+			<li><a href=towns\zd\ZdRes.html>Здания ресурсов</a>
+			<li><a href=towns\zd\ZdSH.html>Здания спецгероев</a>
+			</ul>
+		</ul>
+	<li>Герои
+		<ul>
+		<li><a href=heroes\Heroes.html>Герои</a>
+		<li><a href=heroes\Arts.html>Артефакты</a>
+		<li><a href=heroes\NameInf.html>Имена героев</a>
+		<li><a href=heroes\Zvanies.html>Звания героев</a>
+		</ul>
+	<li>Еще характеристики игрока
+		<ul>
+		<li><a href=player\Res.html>Ресурсы</a>
+		<li><a href=player\SpecHeroes.html>Спецгерои</a>
+		<li><a href=player\Spies.html>Шпионы</a>
+		<li><a href=player\SpecWinLose.html>Специальные условия победы и поражения</a>
+		<li><a href=player\Technologies.html>Технологии</a>
+	    <li><a href=player\Obraz.html>Образы</a>
+		<li><a href=player\Casts.html>Заклинания</a>
+		<li><a href=player\Landcasts.html>Походные заклинания</a>
+		<li><a href=player\Relations.html>Отношения</a>
+		</ul>
+	<li>Битва
+		<ul>
+		<li><a href=battle\Units.html>Существа</a>
+		<li><a href=battle\Battle.html>Битва</a>
+		</ul>
+
+	<li>Разное
+		<ul>
+		<li><a href=other\Features.html>Особенности</a>
+		<li><a href=other\Howtorun.html>Как запустить</a>
+	    <li><a href=other\Campaign.html>Кампании</a>
+		<li><a href=other\Moving.html>Объекты перемещения</a>
+		<li><a href=other\Bonuses.html>Бонусы</a>
+		<li><a href=other\Difficalty.html>Выбор сложности</a>
+		</ul>
+
+	</ul>
+</ul>
+
+<br><a href="../../../index.php">На главную сайта</a>
+<br><a href="../heroes_imitation.rar">Скачать текущую версию heroes imitation</a>
+
+</body>
+</html>

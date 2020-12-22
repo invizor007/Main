@@ -1,0 +1,5 @@
+TFormA1_FormCreate
+Close
+
+50
+50
