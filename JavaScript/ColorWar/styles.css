@@ -1,0 +1,51 @@
+
+body{
+	background: url('fon.jpg');
+	background-repeat: repeat;
+}
+
+.main_div {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+	position: absolute;
+}
+
+.draw_div {
+	width: 600px;
+	height: 600px;
+	position: absolute;
+	top: 60px;
+	left: 200px;
+	outline: 5px solid #808080;
+}
+
+.top_info {
+	width: 1000px;
+	height: 50px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	outline: 3px solid #808080;
+}
+
+.pl1_div {
+	width: 180px;
+	height: 600px;
+	position: absolute;
+	top: 60px;
+	left: 10px;
+	outline: 3px solid #808080;
+}
+
+.pl2_div {
+	width: 180px;
+	height: 600px;
+	position: absolute;
+	top: 60px;
+	left: 810px;
+	outline: 3px solid #808080;
+}
+
+

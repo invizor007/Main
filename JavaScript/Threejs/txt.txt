@@ -1,0 +1,3 @@
+https://customizer.github.io/three.js-doc.ru/three.js-ru.htm
+https://threejs.org/docs/#api/en/core/Object3D.translateY
+https://documentation.help/three.js-ru/intro.htm

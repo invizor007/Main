@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<catalog>
+  <category title="Компьютеры">
+    <category title="Настольные компьютеры"/>
+    <category title="Серверы"/>
+  </category>
+  <category title="Комплектующие">
+    <category title="Процессоры"/>
+    <category title="Материнские платы"/>
+  </category>
+  <category title="Расходные материалы">
+    <category title="Картриджи">
+      <category title="Картриджи для плоттеров"/>
+      <category title="Картриджи для принтеров"/>
+    </category>
+    <category title="Тонеры"/>
+    <category title="Бумага"/>
+  </category>
+</catalog>

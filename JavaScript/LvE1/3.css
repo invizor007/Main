@@ -1,0 +1,70 @@
+body{
+	color:#000000;
+	background-color:#af80af;
+}
+
+.plcountdiv{
+    width: 290px;
+    height:170px;
+	color:#000000;
+	background-color:#8080ff;
+	border: thick double #32a1ce;
+	left:10px;
+	top:20px;
+	position: absolute;	
+}
+
+.num6div{
+    width: 290px;
+    height:300px;
+	color:#000000;
+	background-color:#8080ff;
+	border: thick double #32a1ce;
+	left:10px;
+	top:200px;
+	position: absolute;
+}
+
+.maininfodiv{
+    width: 160px;
+    height:170px;
+	color:#000000;
+	background-color:#8080ff;
+	border: thick double #32a1ce;
+	left:310px;
+	top:20px;
+	position: absolute;
+}
+
+.statepaneldiv{
+    width: 160px;
+    height:90px;
+	color:#000000;
+	background-color:#8080ff;
+	border: thick double #32a1ce;
+	left:310px;
+	top:200px;
+	position: absolute;
+}
+
+.choosenumdiv{
+    width: 160px;
+    height:110px;
+	color:#000000;
+	background-color:#8080ff;
+	border: thick double #32a1ce;
+	left:310px;
+	top:300px;
+	position: absolute;
+}
+
+.plmoneydiv{
+    width: 160px;
+    height:80px;
+	color:#000000;
+	background-color:#8080ff;
+	border: thick double #32a1ce;
+	left:310px;
+	top:420px;
+	position: absolute;
+}

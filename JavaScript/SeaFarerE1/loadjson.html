@@ -1,0 +1,19 @@
+﻿<html>
+<head>
+<title>Json Example</title>
+</head>
+<script type="text/javascript" src="test.json"></script>
+
+<script>
+function loadjson() 
+{
+	var mydata = JSON.parse(data);
+	alert(mydata[0].name);
+};
+</script>
+
+<body>
+<input type="button" value="Загрузить" onclick="loadjson()">
+</body>
+
+</html>

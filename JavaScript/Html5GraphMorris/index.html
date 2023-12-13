@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Графики в Html5</title>
+
+<style>
+.myfirstchart {
+  background-color: #FFFFFF;
+  border: 2px solid #000080;
+  color: red;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  outline: 2px;
+}
+
+.bar-example {
+  background-color: #FFFFFF;
+  border: 2px solid #000080;
+  color: green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  outline: 2px;
+}
+
+.donut-example {
+  background-color: #FFFFFF;
+  border: 2px solid #000080;
+  color: blue;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  outline: 2px;
+}
+
+.mainform {
+    width: 500px;
+    height:800px;
+}
+
+body {
+	background: white;
+}
+</style>
+</head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.js"></script>
+
+
+<script>
+"use strict";
+
+var MyLine, MyDonut, MyBar;
+var tempData1={data:[]}, tempData2={data:[]};
+
+function ExampleLine()
+{
+  if (MyLine === undefined) 
+	MyLine = new Morris.Line({
+	  element: 'myfirstchart',
+	  data: [
+		{ year: '2006', value: 150 },
+		{ year: '2007', value: 120 },
+		{ year: '2008', value: 200 },
+		{ year: '2009', value: 100 },
+		{ year: '2010', value: 50 },
+		{ year: '2011', value: 50 },
+		{ year: '2012', value: 200 }
+	  ],
+	  xkey: 'year', 
+	  ykeys: ['value'], 
+	  labels: ['Value'],
+	  hideHover: true
+	}); //#C0E0D0
+	else 
+	{
+	  MyLine.setData(tempData1.data);
+	  MyLine.redraw();  
+	}
+}
+
+function ExampleBar()
+{
+  if (MyBar === undefined) 
+	MyBar = new Morris.Bar({
+	  element: 'bar-example',
+	  data: [
+		{ y: '2006', a: 100, b: 90 },
+		{ y: '2007', a: 75,  b: 65 },
+		{ y: '2008', a: 50,  b: 40 },
+		{ y: '2009', a: 75,  b: 65 },
+		{ y: '2010', a: 50,  b: 40 },
+		{ y: '2011', a: 75,  b: 65 },
+		{ y: '2012', a: 100, b: 90 }
+	  ],
+	  xkey: 'y',
+	  ykeys: ['a', 'b'],
+	  labels: ['Series A', 'Series B']
+	});
+	else 
+	{
+	  MyBar.setData(tempData2.data);
+	  MyBar.redraw();//MyLine.setData();
+	}
+}
+
+function ExampleDonut()
+{
+  if (MyDonut === undefined) 
+	MyDonut = new Morris.Donut({
+	  element: 'donut-example',
+	  data: [
+		{label: "Series A", value: 12},
+		{label: "Series B", value: 30},
+		{label: "Series C", value: 20}
+	  ],
+	  labels: ['Series A', 'Series B','Series C']
+	});
+}
+
+//https://morrisjs.github.io/morris.js/bars.html моррис
+//https://morris.readthedocs.io/en/latest/ моррис
+//https://codepen.io/Haknecs/pen/rWEwmz тут можно попрограммировать и увидеть результат
+
+
+
+function Readfile()
+{
+	var file = document.getElementById('file');
+	file.addEventListener('change', function() {
+		var reader = new FileReader();
+		var f = file.files[0];
+		reader.onload = function(e) {
+			var CSVARRAY = parseResult(e.target.result);
+			//alert(CSVARRAY[1][2]);//y - x
+			for (var i = 0; i <= 6; i++)
+			{
+				var yval = 2006 + i;
+				var temp2 = {y: yval+'', a: parseInt(CSVARRAY[i+1][1],10), b: parseInt(CSVARRAY[i+1][2],10)};
+				tempData2.data.push(temp2);		
+				var temp1 = {year: yval+'', value : parseInt(CSVARRAY[i+1][3],10)};
+				tempData1.data.push(temp1);
+			}
+			alert('Загружено');
+		};
+		reader.readAsText(f);
+	});
+}
+
+function parseResult(result) {
+    var resultArray = [];
+    result.split("\n").forEach(function(row) {
+        var rowArray = [];
+        row.split(";").forEach(function(cell) {
+            rowArray.push(cell);
+        });
+        resultArray.push(rowArray);
+    });
+    return resultArray;
+}
+</script>
+
+<body>
+
+<input type="file" id="file" name="file" onclick="Readfile()"><br>
+
+<div id="myfirstchart" class="myfirstchart" style="height: 250px;width: 500px" onclick="ExampleLine()"></div>
+<div id="bar-example" class="bar-example" style="height: 250px;width: 500px" onclick="ExampleBar()"></div>
+<div id="donut-example" class="donut-example" style="height: 250px;width: 500px" onclick="ExampleDonut()"></div>
+
+</body>
+</html>

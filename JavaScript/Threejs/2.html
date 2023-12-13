@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Three figures</title>
+		<style>
+			body { margin: 0; }
+		</style>
+        <script src="http://threejs.org/build/three.min.js"></script>
+	</head>
+	<body>
+		<script>
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			const geometry1 = new THREE.BoxGeometry(3,3,3,1,1,1);
+			const material1 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			const cube = new THREE.Mesh( geometry1, material1 );
+			scene.add( cube );
+			
+			const geometry2 = new THREE.TorusGeometry(7, 1, 6, 12);
+			const material2 = new THREE.MeshBasicMaterial({ color: 0xff9500 });
+			const torus = new THREE.Mesh(geometry2, material2);
+			scene.add(torus);	
+
+			const geometry3 = new THREE.ConeGeometry( 3, 7, 10 );
+			const material3 = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+			const cone = new THREE.Mesh( geometry3, material3 );
+			cone.translateX(5);
+			scene.add( cone );			
+
+			scene.fog = new THREE.Fog( 0x808080, 7, 25 );
+			camera.position.z = 15;
+
+			function animate() {
+				requestAnimationFrame( animate );
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+				
+				torus.rotation.x += 0.01;
+				torus.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		</script>
+	</body>
+</html>

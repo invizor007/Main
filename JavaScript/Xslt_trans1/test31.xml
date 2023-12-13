@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<tutorial>
+<enimals>
+  <dogs>
+    <dog>
+      <dogName>Шарик</dogName>
+      <dogWeight caption="кг">18</dogWeight>
+      <dogColor>рыжий с черными подпалинами</dogColor>
+    </dog>
+    <dog>
+      <dogName>Тузик</dogName>
+      <dogWeight caption="кг">10</dogWeight>
+      <dogColor>белый с черными пятнами</dogColor>
+    </dog>
+    <dog>
+      <dogName>Бобик</dogName>
+      <dogWeight caption="кг">2</dogWeight>
+      <dogColor>бело-серый</dogColor>
+    </dog>
+    <dog>
+      <dogName>Трезор</dogName>
+      <dogWeight caption="кг">25</dogWeight>
+      <dogColor>черный</dogColor>
+    </dog>
+  </dogs>
+</enimals>
+</tutorial>

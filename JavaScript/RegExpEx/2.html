@@ -1,0 +1,31 @@
+<html>
+<head>
+<script language="Javascript">
+function f()
+{
+	var pattern1 = /[0-9a-zA-z]@[a-zA-z].[a-zA-z]/;
+	var str1 = 'aaa@bbb.com';
+	alert("1: "+pattern1.test(str1));
+	
+	var pattern2 = /[+]79[0-9]{9}/;
+	var str2 = '+79384388593';
+	alert("2: "+pattern2.test(str2));
+	
+	var pattern3 = /[1-6][0-9]{5}/;
+	var str3 = '239343';
+	alert("3: "+pattern3.test(str3));
+	
+	var pattern4 = /[a-zA-Z]{1,25} [a-zA-Z]{1,15} [a-zA-Z]{1,15}/;
+	var str4 = 'Nameone Nametwo Namethree';
+	alert("4: "+pattern4.test(str4));
+	
+	var pattern5 = /[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{2}/;
+	var str5 = '837-227-137-23';
+	alert("5: "+pattern5.test(str5));	
+}
+</script>
+</head>
+<body>
+<input type="button" value="click me" onclick="f()">
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+<script language="Javascript">
+function rexexp_match()
+{
+	var str = document.getElementById("text1").value;
+	var pattern = new RegExp(document.getElementById("text2").value);
+	document.getElementById("textres1").value = str.match(pattern);
+}
+
+function rexexp_replace()
+{
+	var str = document.getElementById("text1").value;
+	var pattern = new RegExp(document.getElementById("text2").value);
+	var repl = document.getElementById("text3").value;
+	document.getElementById("textres2").value = str.replace(pattern,repl);
+}
+</script>
+</head>
+<body>
+<input type="text" id="text1"> =>
+<input type="text" id="text2">
+<input type="button" value="ok" onclick="rexexp_match()">
+<input type="text" id="textres1"><br>
+Replace &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+<input type="text" id="text3">
+<input type="button" value="ok" onclick="rexexp_replace()">
+<input type="text" id="textres2">
+</body>
+</html>

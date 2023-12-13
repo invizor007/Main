@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script language="Javascript">
+
+var arr1 = [];
+var CurveType = 0,Scale = 500, Zoom = 0.3, Lim1 = 0, Lim2 = 16, Count = 1000, SkipPoint = 0;
+
+//CurveType = 0..4 
+
+function CalcValX(tip,x)
+{
+	if (tip == 0) //popa 9*x*x+4*y*y=36 y=sqrt(36-9*x*x)/4
+	{
+		var x0 = 0, x01 = 0,x1 = 0, x2 = 0;
+		if (x>8) {x0 = x-12;x01 = 1;} else {x0 = x-4;x01 = 0;}
+		
+		if (x0<=-2) x1 = -4 - x0;
+		else if (x0<=0) x1 = x0;
+		else if (x0<=2) x1 = x0;
+		else if (x0<=4) x1 = 4 - x0;
+		x2 = x1 + 1;
+		
+		if (x2<0) x2 = 0;
+		if (x01==0) x2 = -x2;
+		
+		return x2;		
+	}
+	else if (tip == 1) //serdechko x^2+(y-sqrt3(x^2))^2=1 \ y=sqrt3(x^2)+sqrt(1-x^2)
+	{
+		var x0 = 2*(x/8-1);
+		if (x0 <= -1) x1 = -2-x0; 
+		else if (x0<=1) x1 = x0;
+		else if (x0<=2) x1 = 2-x0;
+		return x1;
+	}
+	else if (tip == 2)//oval kassini y=sqrt(sqrt(a^4+4*c^2*x^2)-x^2-c^2)
+	{
+		var x0 = 0, x00 = 0;
+		if (x>8) x00 = x - 8; else x00 = x;
+		x0 = 4*(x00/4-1);
+		
+		SkipPoint = 0;
+		//if ((x0<=-1.4499)||(x0>=1.4499)) SkipPoint = 1;
+		
+		return x0;
+	}
+	else if (tip == 3)//ulitka paskalya 2*r*cos(t)-h*cos(2*t)  2*r*sin(t)-h*sin(2*t)
+	{
+		var x0 = 0, x1 = 0;
+		var p_h = 0.7,p_r = 1;
+		x0 = 2*Math.PI*x/16;
+		x1 = 2*p_r*Math.cos(x0)-p_h*Math.cos(2*x0);
+		return x1;
+	}
+	else if (tip == 4)
+	{
+		return x;
+	}		
+	else return 0;
+}
+
+function CalcValY(tip,x)//CalcValXY
+{
+	if (tip == 0) 
+	{
+		var  x0 = 0,x01 = 0, x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
+		if (x>8) {x0 = x-12;x01 = 1;} else {x0 = x-4;x01 = 0;}
+		
+		if (x0<=-2) x1 = -4 - x0;
+		else if (x0<=0) x1 = x0;
+		else if (x0<=2) x1 = x0;
+		else if (x0<=4) x1 = 4 - x0;
+		x2 = x1 + 1;
+		
+		if (x0<=-2) {x3 = 4 + x0; x4 = -Math.sqrt(9-4*x3*x3);}
+		else if (x0<=0) {x3 = -x0; x4 = Math.sqrt(9-4*x3*x3);}
+		else if (x0<=2) {x3 = x0; x4 = Math.sqrt(9-4*x3*x3);}
+		else if (x0<=4) {x3 = 4 - x0; x4 = -Math.sqrt(9-4*x3*x3);}	
+		
+		if (x2>=0) x5 = x4;
+		else x5 = 0;
+		
+		SkipPoint = 0;
+		if (x5==-3)
+		{
+			SkipPoint = 1;		
+		}
+		return x5;
+	}
+	else if (tip == 1)
+	{
+		var x0 = 0, x1 = 0, x2 = 0, x3 = 0;
+		x0 = 2*(x/8-1);	
+		x1 = x0*x0;
+		x2 = Math.pow(x1,1/3);
+		if (1-x1>=0) x3 = Math.sqrt(1-x1)+x2;
+		else x3 = -Math.sqrt(x1-1)+x2;
+		return x3;
+	}
+	else if (tip == 2) 
+	{
+		var p_a4 = 2.5, p_c2 = 1.5;
+		var x0 = 0, x1 = 0, x2 = 0, x3 = 0, x4 = 0;
+		if (x>8) {x00 = x-8;x01 = 1;} else {x00 = x;x01 = 0;}
+		x0 = 4*(x00/4-1);
+		x1 = x0*x0;
+		x2 = p_a4+4*p_c2*x1;
+		x3 = Math.sqrt(p_a4+4*p_c2*x1);
+		x4 = Math.sqrt(x3-x1-p_c2);
+		if (x01 == 1) x5 = x4;
+		else x5 = -x4;
+		return x5;
+	}
+	else if (tip == 3)
+	{
+		var x0 = 0, x1 = 0;
+		var p_h = 0.7,p_r = 1;
+		x0 = 2*Math.PI*x/16;
+		x1 = 2*p_r*Math.sin(x0)-p_h*Math.sin(2*x0);
+		return x1;		
+	}
+	else if (tip == 4) 
+	{
+		return 2*x;
+	}
+	else return 0;
+}
+
+
+function TransPX(x)
+{
+	return Math.round(Scale/2+x*Scale*Zoom/2);
+}
+
+function TransPY(x)
+{
+	return Math.round(Scale/2-x*Scale*Zoom/2);
+}
+
+function DrawOnes()
+{
+	var ctx = document.getElementById("canvas1").getContext("2d");
+	
+	for (var i=1;i<=5;i++)
+	{
+		ctx.moveTo(TransPX(i),240);ctx.lineTo(TransPX(i),260);
+		ctx.moveTo(TransPX(-1*i),240);ctx.lineTo(TransPX(-1*i),260);
+		ctx.moveTo(240,TransPY(i));ctx.lineTo(260,TransPY(i));
+		ctx.moveTo(240,TransPY(-1*i));ctx.lineTo(260,TransPY(-1*i));	
+	}
+	ctx.stroke();	
+}
+
+function DrawOnesDigits()
+{
+	var ctx = document.getElementById("canvas1").getContext("2d");
+	ctx.font = '18px serif';
+	
+	ctx.strokeStyle='#ff0000';
+	ctx.fillStyle='#ff0000';
+	var strm = "-1",strp = "1";
+	
+	for (var i=1;i<=5;i++)
+	{
+		strp=i+"",strm=(-1*i)+"";
+		ctx.fillText(strp,230,TransPY(i));
+		ctx.fillText(strm,230,TransPY(-1*i));
+		ctx.fillText(strp,TransPX(i),230);
+		ctx.fillText(strm,TransPX(-1*i),230);		
+	}
+	ctx.fillText("0",230,230);
+	//ctx.fillText("1",230,TransPY(1));
+	//ctx.fillText("-1",230,TransPY(-1));
+	//ctx.fillText("1",TransPX(1),230);
+	//ctx.fillText("-1",TransPX(-1),230);
+	ctx.stroke();
+}
+
+function DrawCoord()
+{ 
+	var ctx = document.getElementById("canvas1").getContext("2d");
+	ctx.strokeStyle='#ff00ff';
+	ctx.fillStyle='#ff0000';
+	
+	ctx.moveTo(0,250);ctx.lineTo(500,250);
+	ctx.moveTo(250,0);ctx.lineTo(250,500);
+	ctx.stroke();
+}
+
+function DrawFon()
+{
+	var ctx = document.getElementById("canvas1").getContext("2d");
+	ctx.fillStyle='#8080ff';	
+	ctx.fillRect(0,0,500,500);
+}
+
+function DrawFunCurve()
+{
+	arr1 = [];
+	for (var i=0;i<Count;i++)
+	{
+		var tmp = {};
+		tmp.x = CalcValX(CurveType, Lim1+ (Lim2-Lim1)*i/Count);
+		tmp.y = CalcValY(CurveType, Lim1+ (Lim2-Lim1)*i/Count);
+		tmp.i = i;
+		//if (i>0)
+		//	if ((tmp.x-arr1[i-1].x)*(tmp.x-arr1[i-1].x)+(tmp.y-arr1[i-1].y)*(tmp.y-arr1[i-1].y)>0.01)
+		//		SkipPoint = 1;		
+		tmp.s = SkipPoint;
+		arr1.push(tmp);
+	}
+	
+	var ctx = document.getElementById("canvas1").getContext("2d");
+	ctx.strokeStyle='#00ff00';
+	ctx.fillStyle='#000000';
+	
+	ctx.moveTo(TransPX(arr1[0].x),TransPY(arr1[0].y));
+	ctx.lineTo(TransPX(arr1[0].x),TransPY(arr1[0].y));
+	for (var i=1;i<Count-1;i++)
+	{
+		ctx.moveTo(TransPX(arr1[i-1].x),TransPY(arr1[i-1].y));
+		if (arr1[i-1].s == 0)
+		{
+			ctx.lineTo(TransPX(arr1[i].x),TransPY(arr1[i].y));
+		}
+	}
+	ctx.stroke();
+	
+	//arr1 = [];
+}
+
+function Redraw()
+{
+	DrawFon();
+	DrawCoord();
+	DrawOnes();
+	DrawOnesDigits();
+	DrawFunCurve();
+}
+
+
+</script>
+
+</head>
+<body>
+<input type="button" name="btn1" value="Нарисовать" onClick="Redraw();">
+<div id="div1">
+<canvas id="canvas1" width=500 height=500>
+</canvas>
+</div>
+</body>
+</html>

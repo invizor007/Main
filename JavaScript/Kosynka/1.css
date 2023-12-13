@@ -1,0 +1,37 @@
+.Panel1{
+	position: absolute;
+    width: 600px;
+    height: 190px;
+	top: 0px;
+	left: 610px;
+	outline: 1px solid #ffff00;
+	color: black;
+	font-size:100%;
+	padding: 3px;
+}
+
+.Panel2{
+	position: absolute;
+    width: 1200px;
+    height: 500px;
+	top: 230px;
+	left: 10px;
+	outline: 1px solid #ffff00;
+	color: black;
+	font-size:100%;
+	padding: 3px;
+}
+
+.Panel3{
+	position: absolute;
+    width: 600px;
+    height: 190px;
+	top: 0px;
+	left: 10px;
+	outline: 1px solid #ffff00;
+	color: black;
+	font-size:100%;
+	padding: 3px;
+}
+
+

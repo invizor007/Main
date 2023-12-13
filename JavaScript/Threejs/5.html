@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Move</title>
+		<style>
+			body { margin: 0; }
+		</style>
+        <script src="http://threejs.org/build/three.min.js"></script>
+	</head>
+	<body>
+		<script>
+		const scene = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+		const renderer = new THREE.WebGLRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 }, {side: THREE.DoubleSide} );
+			
+		const curve = new THREE.SplineCurve( [
+			new THREE.Vector2( -10, 0 ),
+			new THREE.Vector2( -5, 5 ),
+			new THREE.Vector2( 0, 0 ),
+			new THREE.Vector2( 5, -5 ),
+			new THREE.Vector2( 10, 0 )
+		] );
+		const points = curve.getPoints( 50 );
+		const geometry = new THREE.BufferGeometry().setFromPoints( points );
+		const splineObject = new THREE.Line( geometry, material );
+		scene.add(splineObject);
+		
+		const sz = 10, d = 10;
+		const gridHelper = new THREE.GridHelper( sz, d );
+		scene.add( gridHelper );
+		
+		const shape = new THREE.Shape();
+		shape.moveTo(-2,-1,2);
+		shape.lineTo(2,-3,0);
+		shape.lineTo(0,2,0);
+		const triangleGeometry = new THREE.ShapeGeometry(shape);
+		const triangleMesh = new THREE.Mesh(triangleGeometry, material);
+		scene.add(triangleMesh);
+
+		camera.position.z = 15;
+		camera.position.y = 5;
+		camera.position.x = 5;
+		camera.rotation.x = 0;
+		camera.rotation.y = 0;
+		camera.rotation.z = 0;
+
+		function animate() {
+			requestAnimationFrame( animate );
+			renderer.render( scene, camera );
+		};
+			
+			
+		function onDocumentKeyDown(event) 
+		{
+			var keyCode = event.which;
+				
+			if (keyCode == 87) 
+			{
+				camera.position.y += 1;// W
+			} 
+			else if (keyCode == 83) 
+			{
+				camera.position.y -= 1;// S
+			} 
+			else if (keyCode == 65) 
+			{
+				camera.position.x -= 1;// A
+			} 
+			else if (keyCode == 68) 
+			{
+				camera.position.x += 1; // D
+			}
+			else if (keyCode == 90) 
+			{
+				camera.position.z += 1;// Z
+			} 
+			else if (keyCode == 67) 
+			{
+				camera.position.z -= 1; // C
+			}
+			else if (keyCode == 81) 
+			{
+				camera.rotation.y += 0.01; // Q
+			}
+			else if (keyCode == 69) 
+			{
+				camera.rotation.y -= 0.01; // E
+			}
+			renderer.render( scene, camera );
+		};
+
+		document.addEventListener("keydown", onDocumentKeyDown, false);
+		animate();
+		</script>
+	</body>
+</html>

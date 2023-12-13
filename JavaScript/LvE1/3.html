@@ -1,0 +1,44 @@
+<html>
+<head></head>
+
+<script language="javascript" src="3.js">
+</script>
+<link rel="stylesheet" href="3.css">
+<body>
+
+<div id="plcodiv" class="plcountdiv">
+&nbsp;Введите количество игроков (от 2 до 5)<br>
+&nbsp;<input id="plcount" type="number" value="2" min="2" max="5">
+<br><br>&nbsp;<input type="checkbox" id="neicube" value="checked">Нейтральный кубик
+<br><br>
+&nbsp;<input type="button" value="Новая игра" onclick="gm_start()"><br><br>
+&nbsp;<input type="button" value="test" onclick="test()">
+</div>
+
+<div id="num6" class="num6div">
+
+</div>
+
+<div id="maininfo"  class="maininfodiv">
+&nbsp;Ход номер ?. <br>&nbsp;Ходит игрок ?.<br>
+</div>
+
+
+<div id="statepanel" class="statepaneldiv">
+&nbsp;<input type="button" value="Бросить кубики" onclick="cube_throw()"><br>&nbsp;
+</div>
+
+<br>
+
+<div id="choosenum" class="choosenumdiv">
+<br>&nbsp;<input type="number" id="chnum" value="1" min="1" max="6">
+<br><br>&nbsp;<input type="button" value="Выбрать номер" onclick="choose_num()">
+</div>
+
+<div id="plmoney" class="plmoneydiv">
+Количество денег:
+</div>
+
+
+</body>
+</html>

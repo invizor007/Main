@@ -1,0 +1,108 @@
+<script language="Javascript">
+main();//нужно продумать чем заменить ActiveXObject
+
+function main()
+{
+  //openWord(null);
+  //var doc = LoadDOM("test1.xml");
+  //var xsl = LoadDOM("test2.xsl");
+  //var doc = document.createElement("div");
+  //var xsl = document.createElement("div");
+  
+  var myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "test2.xsl", false);
+  myXMLHTTPRequest.send(null);
+  xsl = myXMLHTTPRequest.responseXML;
+
+  var myXMLHTTPRequest2 = new XMLHttpRequest();
+  myXMLHTTPRequest2.open("GET", "test1.xml", false);
+  myXMLHTTPRequest2.send(null);
+  doc = myXMLHTTPRequest2.responseXML;
+
+  
+  //doc.load("test1.xml");//как то надо получить xml из файла
+  //xsl.load("test2.xsl");
+
+  //var str = doc.transformNode(xsl);
+  //alert("\ndoc.transformNode:\n"+str);
+
+  //var out = '<html></html>';//MakeDOM(null);
+  //doc.transformNodeToObject(xsl, out);
+  //alert("out");
+  //alert("\ndoc.transformNodeToObject:\n"+out.xml);
+  
+  var xsltProcessor = new XSLTProcessor();
+  xsltProcessor.importStylesheet(xsl);
+  var xmlFragment = xsltProcessor.transformToFragment(doc, document);
+  //var res = GetXmlStringFromXmlDoc(xmlFragment);
+  //alert(res);
+  
+  var xmls = new XMLSerializer();
+  var res = xmls.serializeToString(xmlFragment);
+  if (res.indexOf("<transformiix:result") > -1)
+    res = res.substring(res.indexOf(">") + 1, res.lastIndexOf("<"));
+  alert(res);
+}
+
+function LoadDOM(file)
+{
+   var dom;
+   try {
+     dom = MakeDOM(null);
+     dom.load(file);
+   }
+   catch (e) {
+     alert(e.description);
+   }
+   return dom;
+}
+
+function MakeDOM(progID)
+{
+  if (progID == null) {
+    progID = "msxml2.DOMDocument.6.0";
+  }
+
+  var dom;
+  try {
+    dom = new ActiveXObject(progID);
+    dom.async = false;
+    dom.validateOnParse = false;
+    dom.resolveExternals = false;
+  }
+  catch (e) {
+    alert(e.description);
+  }
+  return dom;
+}
+
+/*
+function openWord(file) 
+{
+	try 
+	{
+	var objword = new ActiveXObject("Word.Application");
+	} catch (e) {
+		alert(e + 'Cannot open Word');
+	}
+
+	if (objword != null) {
+		objword.Visible = true;
+		objword.Documents.Open(file);
+	}
+}
+
+$xml = $(xmlDoc);
+    var obj = {
+        name: $xml.find('name').text(),
+        age: $xml.find('age').text(),
+        gender: $xml.find('gender').text()
+    };
+*/
+//function alert(str)
+//{
+//  WScript.Echo(str);
+//}
+</script>
+
+

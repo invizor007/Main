@@ -1,0 +1,15 @@
+.Panel1{
+	position: absolute;
+    width: 600px;
+    height: 600px;
+	top: 10px;
+	left: 10px;
+	outline: 1px solid #ffff00;
+	background-color: #ff8080;
+	font-size:100%;
+	padding: 3px;
+}
+
+.littlenum{
+	width:50px;
+}

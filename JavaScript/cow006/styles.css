@@ -1,0 +1,23 @@
+.TitleDiv{
+	position: absolute;
+    width: 600px;
+    height: 100px;
+	top: 0px;
+	left: 0px;
+	outline: 1px solid #008000;
+	color: black;
+	font-size:100%;
+	padding: 3px;
+}
+
+.DivMain{
+	position: absolute;
+    width: 600px;
+    height: 500px;
+	top: 100px;
+	left: 0px;
+	outline: 1px solid #008000;
+	color: black;
+	font-size:100%;
+	padding: 3px;
+}

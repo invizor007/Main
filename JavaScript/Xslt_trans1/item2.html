@@ -1,0 +1,39 @@
+<html>
+<head>
+<script language="Javascript">
+
+function main()
+{
+	var myXMLHTTPRequest1 = new XMLHttpRequest();
+	myXMLHTTPRequest1.open("GET", "test21.xml", false);//testX1.xml
+	myXMLHTTPRequest1.send(null);
+	var doc = myXMLHTTPRequest1.responseXML;
+
+	var myXMLHTTPRequest2 = new XMLHttpRequest();
+	myXMLHTTPRequest2.open("GET", "test22.xsl", false);//testX2.xsl
+	myXMLHTTPRequest2.send(null);
+	var xsl = myXMLHTTPRequest2.responseXML;
+	
+	var xsltProcessor = new XSLTProcessor();
+	xsltProcessor.importStylesheet(xsl);
+	var xmlFragment = xsltProcessor.transformToFragment(doc, document);
+	//var res = GetXmlStringFromXmlDoc(xmlFragment); //in chrome dont work
+
+	var xmls = new XMLSerializer();
+	var res = xmls.serializeToString(xmlFragment);
+	if (res.indexOf("<transformiix:result") > -1)
+		res = res.substring(res.indexOf(">") + 1, res.lastIndexOf("<"));
+	
+	//document.innerHTML = "<pre>"+res+"</pre>";
+	document.getElementById("div1").innerHTML = res;//"<pre>"+res+"</pre>";
+	alert(res);
+}
+
+</script>
+</head>
+<body>
+<input type = "button" value="button1" onclick="main();">
+<div id = "div1"></div>
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+<html>
+<head>
+<script language="Javascript">
+function f()
+{
+	var pattern = /[0-9]/; var pattern2 = /[0-1]/;
+	var str = '21';
+	var repl = '5';
+	alert("pattern.test(str) "+pattern.test(str));
+	alert("pattern.exec(str) "+pattern.exec(str));
+	alert("str.match(pattern) "+str.match(pattern));
+	alert("str.search(pattern2) "+str.search(pattern2));
+	alert("str.replace(pattern2,repl) "+str.replace(pattern2,repl));
+}
+</script>
+</head>
+<body>
+<input type="button" value="click me" onclick="f()">
+</body>
+</html>

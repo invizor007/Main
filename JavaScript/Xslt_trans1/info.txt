@@ -1,0 +1,14 @@
+https://msiter.ru/sites/default/files/msiter_files/cd_catalog_with_xsl.xml
+https://msiter.ru/tutorials/xslt/transformation
+https://msiter.ru/tutorials/xslt/xsl-client
+
+https://code.google.com/archive/p/xsr/wikis/introduction.wiki
+http://xmlhack.ru/books/xslt/ch_09_05.html
+https://developer.mozilla.org/ru/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+
+https://www.freeformatter.com/xsl-transformer.html
+https://www.online-toolz.com/tools/xslt-transformation.php
+http://xsltransform.net/
+
+http://www.zvon.org/xxl/XSLTutorial/Output/contents.html
+http://localhost/Xslt_trans1/item3.html

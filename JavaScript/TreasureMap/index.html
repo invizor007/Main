@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+
+<script type="text/javascript" src="1.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="1.css">
+
+<body onLoad="ImageInit()">
+	
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="GamePanel10" id = "Panel10">
+      <label for="LabelPlayerCount" class="GameLabelLong" id="LabelPlayerCount">Введите количество игроков от 2 до 4</label>
+      <input type="text" class="text" value="4" id="ChoosePlayerCount">
+      <button class = "btn btn-default GameBtnT2" id="StartGame" onclick="GameStart()">Начать игру</button>
+      <button class = "btn btn-default GameBtnT2" id="FinishGame" onclick="GameEnd()">Завершить игру</button>
+    </div>
+
+    <div class="GamePanel20" id = "Panel20" >
+      <label for = "LabelCurrPlayer" class = "GameLabel" id="LabelCurrPlayer">Ходит игрок</label>
+      <label for = "LabelScore" class = "GameLabel" id="LabelScore">Количество очков</label>
+    </div>
+
+
+    <div class="GamePanel21" id = "Panel21">
+      <button class = "btn btn-default GameBtnT2" id="Step0" onclick="NewCard()">Новая карта</button>
+	  <button class = "btn btn-default GameBtnT2" id="Step0" onclick="UseAbility()">Способность карты</button>
+      <button class = "btn btn-default GameBtnT2" id="Step2" onclick="TakeCards()">Забрать карты</button>
+    </div>
+	
+    <div class="GamePanel3" id = "Panel3">
+      <canvas id="CanvasLCards" width = "1500" height = "220" onclick=LCardsClick(event)>    
+      </canvas>
+    </div>
+
+    <div class="GamePanel4" id = "Panel4">
+      <canvas id="CanvasPlayerArray" width = "1500" height = "220" onclick=PlCardsClick(event)>    
+      </canvas>      
+    </div>	
+
+    <div class="GamePanel50" id = "Panel50">
+      Вытягиваем карты      
+    </div>	
+    <div class="GamePanel60" id = "Panel60">
+        <a onclick="RefreshShowPlayer(-1)">Ваши карты: </a>
+		<a onclick="RefreshShowPlayer(0)">Игрок1 </a>
+		<a onclick="RefreshShowPlayer(1)">Игрок2 </a>
+		<a onclick="RefreshShowPlayer(2)">Игрок3 </a>
+		<a onclick="RefreshShowPlayer(3)">Игрок4 </a>
+    </div>		
+	
+  </div>
+
+</nav>
+
+</body>
+</html>

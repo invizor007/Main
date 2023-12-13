@@ -1,0 +1,78 @@
+
+body{
+	background: url('fon.jpg') no-repeat;
+	background-size: cover; 
+}
+
+.main_div {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+	position: absolute;
+    }
+	
+.title_div {
+	width: 700px;
+	height: 30px;
+	left: 150px;
+	top: 10px;
+	position: absolute;
+}
+
+.title2_div {
+	width: 150px;
+	height: 30px;
+	left: 920px;
+	top: 10px;
+	position: absolute;
+}
+
+.title3_div {
+	width: 150px;
+	height: 30px;
+	left: 1080px;
+	top: 10px;
+	position: absolute;
+}
+
+.sea_div {
+	width: 800px;
+	height: 600px;
+	left: 100px;
+	top: 50px;
+	position: absolute;
+}
+
+.res_div {
+	left: 100px;
+	top: 650px;
+	width: 800px;
+	height: 100px;
+	position: absolute;
+}
+
+.army_div {
+	left: 900px;
+	top: 50px;
+	width: 150px;
+	height: 600px;
+	position: absolute;
+}
+
+.visit_div {
+	left: 1060px;
+	top: 200px;
+	width: 150px;
+	height: 300px;
+	position: absolute;
+}
+
+.bat_div {
+	left: 1060px;
+	top: 50px;
+	width: 150px;
+	height: 600px;
+	position: absolute;
+}
+
